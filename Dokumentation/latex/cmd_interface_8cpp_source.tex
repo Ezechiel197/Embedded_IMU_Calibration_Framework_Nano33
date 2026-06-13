@@ -1,0 +1,268 @@
+\doxysection{cmd\+Interface.\+cpp}
+\hypertarget{cmd_interface_8cpp_source}{}\label{cmd_interface_8cpp_source}\doxymbox{\hyperlink{cmd_interface_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{cmd_interface_8h}{cmdInterface.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00014}00014\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/\ Globale\ Parameter\ (Public)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00019}\doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{00019}}\ \doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flashPrefs}}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00024}\doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{00024}}\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{state}}\ =\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}{IDLE}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00029}\doxymbox{\hyperlink{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070}{00029}}\ NanoBLEFlashPrefs\ \doxymbox{\hyperlink{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070}{myFlashPrefs}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00032}00032\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/\ Private\ Datentypen\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00038}\doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{00038}}\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{ParamType}}\ \{\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00039}\doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd}{00039}}\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd}{PARAM\_FLOAT}},\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00040}\doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845}{00040}}\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845}{PARAM\_BOOL}},\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00041}\doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c}{00041}}\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c}{PARAM\_INVALID}}\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00042}00042\ \};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00045}00045\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/\ Private\ Konstanten\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00048}\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{00048}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{byte}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\_BUF\_LEN}}\ =\ 32;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00051}\doxymbox{\hyperlink{cmd_interface_8cpp_a2a8a11a5dcb6f75a5879f38296fdbf1e}{00051}}\ \textcolor{keyword}{const}\ uint8\_t\ \doxymbox{\hyperlink{cmd_interface_8cpp_a2a8a11a5dcb6f75a5879f38296fdbf1e}{NUM\_FLOAT\_PARAMS}}\ =\ 18;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00054}\doxymbox{\hyperlink{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}{00054}}\ \textcolor{keyword}{const}\ uint8\_t\ \doxymbox{\hyperlink{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}{NUM\_BOOL\_PARAMS}}\ \ =\ 16;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00057}00057\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/\ Private\ Parameter\ (statisch\ /\ modulglobal)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00060}\doxymbox{\hyperlink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{00060}}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{rxBuf}}[\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\_BUF\_LEN}}];}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00063}\doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{00063}}\ \textcolor{keywordtype}{byte}\ \doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rxPos}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00066}\doxymbox{\hyperlink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{00066}}\ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmdReady}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00069}\doxymbox{\hyperlink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{00069}}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmdBuf}}[\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\_BUF\_LEN}}];}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00072}\doxymbox{\hyperlink{cmd_interface_8cpp_a71d0245cc5c1e00ae886c2235480ade2}{00072}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a71d0245cc5c1e00ae886c2235480ade2}{paramB}}[\doxymbox{\hyperlink{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}{NUM\_BOOL\_PARAMS}}];}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00075}00075\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/\ Private\ Prototypen\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00076}00076\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7}{parseUint8}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *tok,\ uint8\_t\ \&value);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00077}00077\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{ParamType}}\ \doxymbox{\hyperlink{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33}{classifyParam}}(uint8\_t\ idx);\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00078}00078\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14}{setParams}}(\textcolor{keywordtype}{char}*\ par);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00079}00079\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f}{readParams}}(\textcolor{keywordtype}{char}*\ par);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00080}00080\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632}{getParamF}}(uint8\_t\ idx);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00081}00081\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a}{setParamF}}(uint8\_t\ idx,\ \textcolor{keywordtype}{float}\ v);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00084}00084\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/\ Funktionimplementierungen\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00093}\doxymbox{\hyperlink{cmd_interface_8cpp_a793eb0c9e2cf49be0fa78f3f430a9081}{00093}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a793eb0c9e2cf49be0fa78f3f430a9081}{handleSerialInput}}()}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00094}00094\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00095}00095\ \ \ \textcolor{keywordflow}{while}\ (Serial.available()\ >\ 0)\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00096}00096\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keywordtype}{char}\ c\ =\ Serial.read();}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)r'}\ ||\ c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00100}00100\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rxPos}}\ >\ 0)\ \textcolor{comment}{//\ Leere\ Zeilen\ ignorieren}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00101}00101\ \ \ \ \ \ \ \{\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{rxBuf}}[\doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rxPos}}]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ strncpy(\doxymbox{\hyperlink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmdBuf}},\ \doxymbox{\hyperlink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{rxBuf}},\ \doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\_BUF\_LEN}});}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmdBuf}}[\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\_BUF\_LEN}}\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rxPos}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmdReady}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Event-\/Flag\ setzen}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00107}00107\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00108}00108\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00109}00109\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rxPos}}\ <\ \doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\_BUF\_LEN}}\ -\/\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{rxBuf}}[\doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rxPos}}++]\ =\ c;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00111}00111\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rxPos}}\ =\ 0;\ \textcolor{comment}{//\ Puffer\ zurücksetzen\ bei\ Überlauf}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00113}00113\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00115}00115\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00116}00116\ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00123}\doxymbox{\hyperlink{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33}{00123}}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{ParamType}}\ \doxymbox{\hyperlink{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33}{classifyParam}}(uint8\_t\ idx)\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00124}00124\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00125}00125\ \ \ \textcolor{keywordflow}{if}\ (idx\ <\ \doxymbox{\hyperlink{cmd_interface_8cpp_a2a8a11a5dcb6f75a5879f38296fdbf1e}{NUM\_FLOAT\_PARAMS}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd}{PARAM\_FLOAT}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00126}00126\ \ \ \textcolor{keywordflow}{if}\ (idx\ >=\ 100\ \&\&\ idx\ <\ 100+\doxymbox{\hyperlink{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}{NUM\_BOOL\_PARAMS}})\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845}{PARAM\_BOOL}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00127}00127\ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c}{PARAM\_INVALID}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00128}00128\ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00138}\doxymbox{\hyperlink{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14}{00138}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14}{setParams}}(\textcolor{keywordtype}{char}*\ par)}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00139}00139\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00140}00140\ \ \ \textcolor{keywordtype}{char}\ *tok\ =\ strtok(par,\ \textcolor{stringliteral}{"{}\ \(\backslash\)t"{}});}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00141}00141\ \ \ uint8\_t\ idx;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00142}00142\ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7}{parseUint8}}(tok,\ idx))\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00143}00143\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00144}00144\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}ERR\ s:\ bad\ index"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00145}00145\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00146}00146\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00148}00148\ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{ParamType}}\ t\ =\ \doxymbox{\hyperlink{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33}{classifyParam}}(idx);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00149}00149\ \ \ \textcolor{keywordflow}{if}\ (t\ ==\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c}{PARAM\_INVALID}})\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00150}00150\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00151}00151\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}ERR\ s:\ index\ out\ of\ range"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00153}00153\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00155}00155\ \ \ tok\ =\ strtok(NULL,\ \textcolor{stringliteral}{"{}\ \(\backslash\)t"{}});}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00156}00156\ \ \ \textcolor{keywordflow}{if}\ (!tok)\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00157}00157\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00158}00158\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}ERR\ s:\ missing\ value"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00160}00160\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00161}00161\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00162}00162\ \ \ \textcolor{keywordflow}{if}\ (t\ ==\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd}{PARAM\_FLOAT}})\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00163}00163\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00164}00164\ \ \ \ \ \textcolor{keywordtype}{float}\ v\ =\ atof(tok);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00165}00165\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a}{setParamF}}(idx,\ v);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00166}00166\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}s\ "{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00167}00167\ \ \ \ \ Serial.print(idx);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00168}00168\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ "{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00169}00169\ \ \ \ \ Serial.println(v,\ 5);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00170}00170\ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00171}00171\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (t\ ==\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845}{PARAM\_BOOL}})\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00172}00172\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00173}00173\ \ \ \ \ \textcolor{keywordtype}{bool}\ v;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(tok,\ \textcolor{stringliteral}{"{}0"{}})\ ==\ 0\ ||\ strcasecmp(tok,\ \textcolor{stringliteral}{"{}false"{}})\ ==\ 0)\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00175}00175\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00176}00176\ \ \ \ \ \ \ v\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00177}00177\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(tok,\ \textcolor{stringliteral}{"{}1"{}})\ ==\ 0\ ||\ strcasecmp(tok,\ \textcolor{stringliteral}{"{}true"{}})\ ==\ 0)\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00179}00179\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00180}00180\ \ \ \ \ \ \ v\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00181}00181\ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00182}00182\ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00183}00183\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00184}00184\ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}ERR\ s:\ bad\ bool"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00185}00185\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00186}00186\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00187}00187\ \ \ \ \ uint8\_t\ bIdx\ =\ idx\ -\/\ 100;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00188}00188\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a71d0245cc5c1e00ae886c2235480ade2}{paramB}}[bIdx]\ =\ v;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00189}00189\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}s\ "{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00190}00190\ \ \ \ \ Serial.print(idx);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00191}00191\ \ \ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ "{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00192}00192\ \ \ \ \ Serial.println(v\ ?\ F(\textcolor{stringliteral}{"{}true"{}})\ :\ F(\textcolor{stringliteral}{"{}false"{}}));\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00193}00193\ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00194}00194\ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00202}\doxymbox{\hyperlink{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f}{00202}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f}{readParams}}(\textcolor{keywordtype}{char}*\ par)}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00203}00203\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00204}00204\ \ \ \textcolor{keywordtype}{char}\ *tok\ =\ strtok(par,\ \textcolor{stringliteral}{"{}\ \(\backslash\)t"{}});}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00205}00205\ \ \ uint8\_t\ idx;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00206}00206\ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7}{parseUint8}}(tok,\ idx))\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00207}00207\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00208}00208\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}ERR\ r:\ bad\ index"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00209}00209\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00210}00210\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00212}00212\ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{ParamType}}\ t\ =\ \doxymbox{\hyperlink{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33}{classifyParam}}(idx);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00213}00213\ \ \ \textcolor{keywordflow}{if}\ (t\ ==\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c}{PARAM\_INVALID}})\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00214}00214\ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}ERR\ r:\ index\ out\ of\ range"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00215}00215\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00216}00216\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00218}00218\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}r\ "{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00219}00219\ \ \ Serial.print(idx);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00220}00220\ \ \ Serial.print(F(\textcolor{stringliteral}{"{}\ "{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00222}00222\ \ \ \textcolor{keywordflow}{if}\ (t\ ==\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd}{PARAM\_FLOAT}})\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00223}00223\ \ \ \ \ \ Serial.println(\doxymbox{\hyperlink{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632}{getParamF}}(idx),\ 5);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00224}00224\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (t\ ==\ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845}{PARAM\_BOOL}})\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00225}00225\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00226}00226\ \ \ \ \ uint8\_t\ bIdx\ =\ idx\ -\/\ 100;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00227}00227\ \ \ \ \ Serial.println(\doxymbox{\hyperlink{cmd_interface_8cpp_a71d0245cc5c1e00ae886c2235480ade2}{paramB}}[bIdx]\ ?\ F(\textcolor{stringliteral}{"{}true"{}})\ :\ F(\textcolor{stringliteral}{"{}false"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00228}00228\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00229}00229\ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00239}\doxymbox{\hyperlink{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01}{00239}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01}{processCommand}}()\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00240}00240\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00241}00241\ \ \ \textcolor{keywordtype}{int}\ rc;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00242}00242\ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmdReady}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00244}00244\ \ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmdReady}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Flag\ für\ asynchrone\ Weiterverarbeitung\ sofort\ freigeben}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00245}00245\ \ \ \textcolor{keywordtype}{char}\ cmd\ =\ \doxymbox{\hyperlink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmdBuf}}[0];}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00247}00247\ \ \ \textcolor{comment}{//\ Restlichen\ String\ als\ Argumente\ isolieren\ (führende\ Leerzeichen\ überspringen)}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00248}00248\ \ \ \textcolor{keywordtype}{char}\ *params\ =\ \doxymbox{\hyperlink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmdBuf}}\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00249}00249\ \ \ \textcolor{keywordflow}{while}\ (*params\ ==\ \textcolor{charliteral}{'\ '})\ params++;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00251}00251\ \ \ \textcolor{keywordflow}{switch}\ (cmd)\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00252}00252\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'G'}:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{state}}\ =\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a8c976a8a38e956ea84eb892daa3f4d68}{SAMPLING\_G}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00253}00253\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'A'}:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{state}}\ =\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a42a751d407002ed0d0e0e8829a621c3b}{SAMPLING\_A}};\ \textcolor{keywordflow}{break};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00254}00254\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'M'}:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{state}}\ =\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a96b9cf066c715e54e83d01c50b8e856b}{SAMPLING\_M}};\ \textcolor{keywordflow}{break};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00255}00255\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'S'}:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{state}}\ =\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}{IDLE}};\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00256}00256\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'s'}:\ \doxymbox{\hyperlink{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14}{setParams}}(params);\ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00257}00257\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'r'}:\ \doxymbox{\hyperlink{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f}{readParams}}(params);\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00258}00258\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'w'}:\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00259}00259\ \ \ \ \ \ \ \textcolor{comment}{//\ Sichert\ die\ gesamte\ prefs-\/Struktur\ im\ Flash}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00260}00260\ \ \ \ \ \ \ rc\ =\ \doxymbox{\hyperlink{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070}{myFlashPrefs}}.writePrefs(\&\doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}},\ \textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00261}00261\ \ \ \ \ \ \ Serial.println(\doxymbox{\hyperlink{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070}{myFlashPrefs}}.errorString(rc));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00262}00262\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00263}00263\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00264}00264\ \ \ \ \ \ \ Serial.println(F(\textcolor{stringliteral}{"{}Unknown\ command"{}}));}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00265}00265\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00266}00266\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00267}00267\ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00274}\doxymbox{\hyperlink{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632}{00274}}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632}{getParamF}}(uint8\_t\ idx)}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00275}00275\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00276}00276\ \ \ \textcolor{keywordflow}{switch}\ (idx)}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00277}00277\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00278}00278\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_x\_ofs;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00279}00279\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_y\_ofs;\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00280}00280\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_z\_ofs;\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00281}00281\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_x\_s;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00282}00282\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_y\_s;\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00283}00283\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_z\_s;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00284}00284\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_x\_ofs;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00285}00285\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_y\_ofs;\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00286}00286\ \ \ \ \ \textcolor{keywordflow}{case}\ 8:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_z\_ofs;\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00287}00287\ \ \ \ \ \textcolor{keywordflow}{case}\ 9:\ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_x\_s;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00288}00288\ \ \ \ \ \textcolor{keywordflow}{case}\ 10:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_y\_s;\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00289}00289\ \ \ \ \ \textcolor{keywordflow}{case}\ 11:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_z\_s;\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00290}00290\ \ \ \ \ \textcolor{keywordflow}{case}\ 12:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_x\_ofs;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00291}00291\ \ \ \ \ \textcolor{keywordflow}{case}\ 13:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_y\_ofs;\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00292}00292\ \ \ \ \ \textcolor{keywordflow}{case}\ 14:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_z\_ofs;\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{case}\ 15:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_x\_s;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00294}00294\ \ \ \ \ \textcolor{keywordflow}{case}\ 16:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_y\_s;\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00295}00295\ \ \ \ \ \textcolor{keywordflow}{case}\ 17:\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_z\_s;\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00296}00296\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ 0.0f;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00297}00297\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00298}00298\ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00305}\doxymbox{\hyperlink{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a}{00305}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a}{setParamF}}(uint8\_t\ idx,\ \textcolor{keywordtype}{float}\ v)}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00306}00306\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00307}00307\ \ \ \textcolor{keywordflow}{switch}\ (idx)}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00308}00308\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00309}00309\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_x\_ofs\ =\ v;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00310}00310\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_y\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00311}00311\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_z\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00312}00312\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_x\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00313}00313\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_y\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00314}00314\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.a\_z\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00315}00315\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_x\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00316}00316\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_y\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00317}00317\ \ \ \ \ \textcolor{keywordflow}{case}\ 8:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_z\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00318}00318\ \ \ \ \ \textcolor{keywordflow}{case}\ 9:\ \ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_x\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00319}00319\ \ \ \ \ \textcolor{keywordflow}{case}\ 10:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_y\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00320}00320\ \ \ \ \ \textcolor{keywordflow}{case}\ 11:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.m\_z\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00321}00321\ \ \ \ \ \textcolor{keywordflow}{case}\ 12:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_x\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00322}00322\ \ \ \ \ \textcolor{keywordflow}{case}\ 13:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_y\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00323}00323\ \ \ \ \ \textcolor{keywordflow}{case}\ 14:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_z\_ofs\ =\ v;\ \textcolor{keywordflow}{break};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00324}00324\ \ \ \ \ \textcolor{keywordflow}{case}\ 15:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_x\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00325}00325\ \ \ \ \ \textcolor{keywordflow}{case}\ 16:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_y\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00326}00326\ \ \ \ \ \textcolor{keywordflow}{case}\ 17:\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}.g\_z\_s\ \ \ =\ v;\ \textcolor{keywordflow}{break};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00327}00327\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00328}00328\ \}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00340}\doxymbox{\hyperlink{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7}{00340}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7}{parseUint8}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *tok,\ uint8\_t\ \&value)}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00341}00341\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00342}00342\ \ \ \textcolor{keywordflow}{if}\ (!tok\ ||\ *tok\ ==\ \textcolor{charliteral}{'\(\backslash\)0'})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00343}00343\ \ \ \textcolor{keywordtype}{long}\ v\ =\ strtol(tok,\ NULL,\ 10);}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00344}00344\ \ \ \textcolor{keywordflow}{if}\ (v\ <\ 0\ ||\ v\ >\ 255)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00345}00345\ \ \ value\ =\ (uint8\_t)v;}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00346}00346\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8cpp_source_l00347}00347\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,255 @@
+\doxysection{flash\+Struct Struct Reference}
+\hypertarget{structflash_struct}{}\label{structflash_struct}\index{flashStruct@{flashStruct}}
+
+
+Struktur zur Speicherung der Sensor-\/\+Kalibrierparameter im Flash-\/\+Speicher.  
+
+
+
+
+{\ttfamily \+\#include $<$cmd\+Interface.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a09c049aa6d96a1024f36a5f1fdc1831f}{a\+\_\+x\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_aa4bdf2cafe9a9090c0946ef338891703}{a\+\_\+y\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_ac729c687eeb710eead0efab218ad4f91}{a\+\_\+z\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a586b9adda47e69da1e6e8f9a6bc42fc4}{a\+\_\+x\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_aaeb309a726c48573e42e542f4853d66a}{a\+\_\+y\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a42bf8b3051964e35655b42c3f190cbb6}{a\+\_\+z\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a9e970006d7c6fc6944f32e17b4d5ffee}{m\+\_\+x\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a5c962129f95938f84f4bd3ac2ada0d15}{m\+\_\+y\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_aebd8d3362938a946664eabd73f282b35}{m\+\_\+z\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a28e1e8ea4362f6309ffb26f2900b4ff4}{m\+\_\+x\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_ab5444d6bb628508fe2b4f6a4105e3bda}{m\+\_\+y\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a385f69923b23b0d4dd63db983db16d22}{m\+\_\+z\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a527591f2f151d412d1ec3c96d3a970cc}{g\+\_\+x\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a895bc519a17f48b7562a70f6ca4059b9}{g\+\_\+y\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a2212f05aac95ab25b50c72661ba23fc4}{g\+\_\+z\+\_\+ofs}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_aebf3cfa29fca99897b72d99abc7667cf}{g\+\_\+x\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_a39729cd5a6d44d4589afb65dcf50029d}{g\+\_\+y\+\_\+s}}
+\item 
+float \doxymbox{\hyperlink{structflash_struct_af3b09211fa35f9e07996bef43c7ade94}{g\+\_\+z\+\_\+s}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struktur zur Speicherung der Sensor-\/\+Kalibrierparameter im Flash-\/\+Speicher. 
+
+
+\begin{DoxyItemize}
+\item Enthält die Offsets (Nullpunktfehler) und Steigungen (Skalierungsfaktoren) für alle drei Achsen des Beschleunigungssensors, Magnetometers und Gyroskops. \begin{DoxyNote}{Note}
+Die Struktur darf eine maximale Größe von 1019 Words (4076 Bytes) nicht überschreiten. 
+\end{DoxyNote}
+
+\end{DoxyItemize}
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+
+
+\label{structflash_struct_doc-variable-members}
+\Hypertarget{structflash_struct_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structflash_struct_a09c049aa6d96a1024f36a5f1fdc1831f}\index{flashStruct@{flashStruct}!a\_x\_ofs@{a\_x\_ofs}}
+\index{a\_x\_ofs@{a\_x\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{a\_x\_ofs}{a\_x\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_a09c049aa6d96a1024f36a5f1fdc1831f} 
+float a\+\_\+x\+\_\+ofs}
+
+Offset-\/\+Korrekturwert für die X-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00034}{34}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a586b9adda47e69da1e6e8f9a6bc42fc4}\index{flashStruct@{flashStruct}!a\_x\_s@{a\_x\_s}}
+\index{a\_x\_s@{a\_x\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{a\_x\_s}{a\_x\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_a586b9adda47e69da1e6e8f9a6bc42fc4} 
+float a\+\_\+x\+\_\+s}
+
+Skalierungsfaktor (Steigung) für die X-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00037}{37}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_aa4bdf2cafe9a9090c0946ef338891703}\index{flashStruct@{flashStruct}!a\_y\_ofs@{a\_y\_ofs}}
+\index{a\_y\_ofs@{a\_y\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{a\_y\_ofs}{a\_y\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_aa4bdf2cafe9a9090c0946ef338891703} 
+float a\+\_\+y\+\_\+ofs}
+
+Offset-\/\+Korrekturwert für die Y-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00035}{35}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_aaeb309a726c48573e42e542f4853d66a}\index{flashStruct@{flashStruct}!a\_y\_s@{a\_y\_s}}
+\index{a\_y\_s@{a\_y\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{a\_y\_s}{a\_y\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_aaeb309a726c48573e42e542f4853d66a} 
+float a\+\_\+y\+\_\+s}
+
+Skalierungsfaktor (Steigung) für die Y-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00038}{38}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_ac729c687eeb710eead0efab218ad4f91}\index{flashStruct@{flashStruct}!a\_z\_ofs@{a\_z\_ofs}}
+\index{a\_z\_ofs@{a\_z\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{a\_z\_ofs}{a\_z\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_ac729c687eeb710eead0efab218ad4f91} 
+float a\+\_\+z\+\_\+ofs}
+
+Offset-\/\+Korrekturwert für die Z-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00036}{36}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a42bf8b3051964e35655b42c3f190cbb6}\index{flashStruct@{flashStruct}!a\_z\_s@{a\_z\_s}}
+\index{a\_z\_s@{a\_z\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{a\_z\_s}{a\_z\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_a42bf8b3051964e35655b42c3f190cbb6} 
+float a\+\_\+z\+\_\+s}
+
+Skalierungsfaktor (Steigung) für die Z-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00039}{39}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a527591f2f151d412d1ec3c96d3a970cc}\index{flashStruct@{flashStruct}!g\_x\_ofs@{g\_x\_ofs}}
+\index{g\_x\_ofs@{g\_x\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{g\_x\_ofs}{g\_x\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_a527591f2f151d412d1ec3c96d3a970cc} 
+float g\+\_\+x\+\_\+ofs}
+
+Nullpunktdrift-\/\+Korrektur für die X-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00050}{50}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_aebf3cfa29fca99897b72d99abc7667cf}\index{flashStruct@{flashStruct}!g\_x\_s@{g\_x\_s}}
+\index{g\_x\_s@{g\_x\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{g\_x\_s}{g\_x\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_aebf3cfa29fca99897b72d99abc7667cf} 
+float g\+\_\+x\+\_\+s}
+
+Skalierungsfaktor für die X-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00053}{53}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a895bc519a17f48b7562a70f6ca4059b9}\index{flashStruct@{flashStruct}!g\_y\_ofs@{g\_y\_ofs}}
+\index{g\_y\_ofs@{g\_y\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{g\_y\_ofs}{g\_y\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_a895bc519a17f48b7562a70f6ca4059b9} 
+float g\+\_\+y\+\_\+ofs}
+
+Nullpunktdrift-\/\+Korrektur für die Y-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00051}{51}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a39729cd5a6d44d4589afb65dcf50029d}\index{flashStruct@{flashStruct}!g\_y\_s@{g\_y\_s}}
+\index{g\_y\_s@{g\_y\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{g\_y\_s}{g\_y\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_a39729cd5a6d44d4589afb65dcf50029d} 
+float g\+\_\+y\+\_\+s}
+
+Skalierungsfaktor für die Y-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00054}{54}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a2212f05aac95ab25b50c72661ba23fc4}\index{flashStruct@{flashStruct}!g\_z\_ofs@{g\_z\_ofs}}
+\index{g\_z\_ofs@{g\_z\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{g\_z\_ofs}{g\_z\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_a2212f05aac95ab25b50c72661ba23fc4} 
+float g\+\_\+z\+\_\+ofs}
+
+Nullpunktdrift-\/\+Korrektur für die Z-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00052}{52}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_af3b09211fa35f9e07996bef43c7ade94}\index{flashStruct@{flashStruct}!g\_z\_s@{g\_z\_s}}
+\index{g\_z\_s@{g\_z\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{g\_z\_s}{g\_z\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_af3b09211fa35f9e07996bef43c7ade94} 
+float g\+\_\+z\+\_\+s}
+
+Skalierungsfaktor für die Z-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00055}{55}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a9e970006d7c6fc6944f32e17b4d5ffee}\index{flashStruct@{flashStruct}!m\_x\_ofs@{m\_x\_ofs}}
+\index{m\_x\_ofs@{m\_x\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{m\_x\_ofs}{m\_x\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_a9e970006d7c6fc6944f32e17b4d5ffee} 
+float m\+\_\+x\+\_\+ofs}
+
+Hard-\/\+Iron Offset-\/\+Korrektur für die X-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00042}{42}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a28e1e8ea4362f6309ffb26f2900b4ff4}\index{flashStruct@{flashStruct}!m\_x\_s@{m\_x\_s}}
+\index{m\_x\_s@{m\_x\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{m\_x\_s}{m\_x\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_a28e1e8ea4362f6309ffb26f2900b4ff4} 
+float m\+\_\+x\+\_\+s}
+
+Soft-\/\+Iron Skalierungsfaktor für die X-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00045}{45}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a5c962129f95938f84f4bd3ac2ada0d15}\index{flashStruct@{flashStruct}!m\_y\_ofs@{m\_y\_ofs}}
+\index{m\_y\_ofs@{m\_y\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{m\_y\_ofs}{m\_y\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_a5c962129f95938f84f4bd3ac2ada0d15} 
+float m\+\_\+y\+\_\+ofs}
+
+Hard-\/\+Iron Offset-\/\+Korrektur für die Y-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00043}{43}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_ab5444d6bb628508fe2b4f6a4105e3bda}\index{flashStruct@{flashStruct}!m\_y\_s@{m\_y\_s}}
+\index{m\_y\_s@{m\_y\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{m\_y\_s}{m\_y\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_ab5444d6bb628508fe2b4f6a4105e3bda} 
+float m\+\_\+y\+\_\+s}
+
+Soft-\/\+Iron Skalierungsfaktor für die Y-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00046}{46}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_aebd8d3362938a946664eabd73f282b35}\index{flashStruct@{flashStruct}!m\_z\_ofs@{m\_z\_ofs}}
+\index{m\_z\_ofs@{m\_z\_ofs}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{m\_z\_ofs}{m\_z\_ofs}}
+{\footnotesize\ttfamily \label{structflash_struct_aebd8d3362938a946664eabd73f282b35} 
+float m\+\_\+z\+\_\+ofs}
+
+Hard-\/\+Iron Offset-\/\+Korrektur für die Z-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00044}{44}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+\Hypertarget{structflash_struct_a385f69923b23b0d4dd63db983db16d22}\index{flashStruct@{flashStruct}!m\_z\_s@{m\_z\_s}}
+\index{m\_z\_s@{m\_z\_s}!flashStruct@{flashStruct}}
+\doxysubsubsection{\texorpdfstring{m\_z\_s}{m\_z\_s}}
+{\footnotesize\ttfamily \label{structflash_struct_a385f69923b23b0d4dd63db983db16d22} 
+float m\+\_\+z\+\_\+s}
+
+Soft-\/\+Iron Skalierungsfaktor für die Z-\/\+Achse 
+
+Definition at line \doxymbox{\hyperlink{cmd_interface_8h_source_l00047}{47}} of file \doxymbox{\hyperlink{cmd_interface_8h_source}{cmd\+Interface.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{cmd_interface_8h}{cmd\+Interface.\+h}}\end{DoxyCompactItemize}

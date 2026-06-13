@@ -1,0 +1,120 @@
+\doxysection{Bm\+Imu.\+h}
+\hypertarget{_bm_imu_8h_source}{}\label{_bm_imu_8h_source}\doxymbox{\hyperlink{_bm_imu_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}bmi270.h"{}}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}bmm150.h"{}}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00023}\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{00023}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00024}\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a0f4ce9b5c44fd001a2fb00ca407409b5}{00024}}\ \ \ \ \ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a0f4ce9b5c44fd001a2fb00ca407409b5}{BOSCH\_ACCELEROMETER\_ONLY}},\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00025}\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a5f5545c505a124e957f688ebcdc17204}{00025}}\ \ \ \ \ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a5f5545c505a124e957f688ebcdc17204}{BOSCH\_MAGNETOMETER\_ONLY}},\ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00026}\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{00026}}\ \ \ \ \ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{BOSCH\_ACCEL\_AND\_MAGN}}\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00027}00027\ \}\ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{CfgBoschSensor\_t}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00033}\doxymbox{\hyperlink{structdev__info}{00033}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structdev__info}{dev\_info}}\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00034}\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{00034}}\ \ \ \ \ TwoWire*\ \doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00035}\doxymbox{\hyperlink{structdev__info_a1997a5306d6d04a9ce867303d1a6d9e1}{00035}}\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{structdev__info_a1997a5306d6d04a9ce867303d1a6d9e1}{dev\_addr}};\ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00036}00036\ \};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00044}\doxymbox{\hyperlink{class_bm_imu}{00044}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_bm_imu_acf45b0250f34d545660de7d1d0d357aa}{BmImu}}\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00045}00045\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00050}00050\ \ \ \ \ \doxymbox{\hyperlink{class_bm_imu_acf45b0250f34d545660de7d1d0d357aa}{BmImu}}(TwoWire\&\ wire\ =\ Wire);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00055}\doxymbox{\hyperlink{class_bm_imu_aa2a4b43645e46f72340eb84f24187606}{00055}}\ \ \ \ \ \doxymbox{\hyperlink{class_bm_imu_aa2a4b43645e46f72340eb84f24187606}{\string~BmImu}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_ab42dc6eac2b711dba589d8aa50b950e8}{setContinuousMode}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_a21eff97915b0048a4d8433752cd7595b}{oneShotMode}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_afbce546b1d19d7054f6096f4a85039ba}{begin}}(\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{CfgBoschSensor\_t}}\ cfg\ =\ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{BOSCH\_ACCEL\_AND\_MAGN}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00077}\doxymbox{\hyperlink{class_bm_imu_aaf81d3fdaf258088d7692fa70cece087}{00077}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_aaf81d3fdaf258088d7692fa70cece087}{end}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_ae2ee06d2aa23720696b7884c5d007ff7}{debug}}(Stream\&\ stream);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00084}00084\ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00085}00085\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_\_MBED\_\_}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{void}\ onInterrupt(mbed::Callback<\textcolor{keywordtype}{void}()>\ callback);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00096}00096\ \ \ \ \ \textcolor{keywordtype}{void}\ setInterruptPin(PinName\ irq\_pin)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00097}00097\ \ \ \ \ \ \ BMI270\_INT1\ =\ irq\_pin;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00104}00104\ \ \ \ \ \textcolor{keywordtype}{void}\ setInterruptPin(pin\_size\_t\ irq\_pin)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00105}00105\ \ \ \ \ \ \ BMI270\_INT1\ =\ digitalPinToPinName(irq\_pin);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00106}00106\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00108}00108\ \ \ \ \ PinName\ BMI270\_INT1\ =\ NC;\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00109}00109\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00110}00110\ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00111}00111\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Beschleunigungssensor\ (Accelerometer)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00120}00120\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a070ab2b9af48dc9cb8c34070fc4d3836}{readAcceleration}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00126}00126\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a893cc561afb713bd296cb1c6199484cf}{accelerationAvailable}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00132}00132\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_ad1c1ae91da4c02d69030702307096cbf}{accelerationSampleRate}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00138}00138\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bm_imu_a33681a85a8ff00c09e6e6b7a9e604e49}{accelerationAvailableStatusbit}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00140}00140\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Gyroskop\ (Drehratensensor)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00149}00149\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_ae6218ba77e6b1fe79b0186cff9141742}{readGyroscope}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00155}00155\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a934b3a986d69fbf505b9cc9d8cab81ee}{gyroscopeAvailable}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00161}00161\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_a875caabe00619717f32feecc8f40e5da}{gyroscopeSampleRate}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00167}00167\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bm_imu_a2f756cbb0a2f6709f75097fc24f88c71}{gyroscopeAvailableStatusbit}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00168}00168\ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00169}00169\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Magnetometer\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00178}00178\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_aa57cc19978464aa582ace2dbc59831c4}{readMagneticField}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00184}00184\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a824c89afdad8e87a5150175647d57a96}{magneticFieldAvailable}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00190}00190\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_a83ec76fad0734b0d41795cc377d8dd50}{magneticFieldSampleRate}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00197}00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_bm_imu_a99452621caae7e77115e9246dbd9c65b}{magneticFieldAvailableStatusbit}}();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00199}00199\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00205}00205\ \ \ \ \ int8\_t\ \doxymbox{\hyperlink{class_bm_imu_adde849eaffa4d095d7a036cfae72a14d}{configure\_sensor}}(\textcolor{keyword}{struct}\ bmm150\_dev\ *dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00212}00212\ \ \ \ \ int8\_t\ \doxymbox{\hyperlink{class_bm_imu_adde849eaffa4d095d7a036cfae72a14d}{configure\_sensor}}(\textcolor{keyword}{struct}\ bmi2\_dev\ *dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00214}00214\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00223}00223\ \ \ \ \ \textcolor{keyword}{static}\ int8\_t\ bmi2\_i2c\_read(uint8\_t\ reg\_addr,\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00233}00233\ \ \ \ \ \textcolor{keyword}{static}\ int8\_t\ bmi2\_i2c\_write(uint8\_t\ reg\_addr,\ \textcolor{keyword}{const}\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00240}00240\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ bmi2\_delay\_us(uint32\_t\ period,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00245}00245\ \ \ \ \ \textcolor{keywordtype}{void}\ interrupt\_handler();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00251}00251\ \ \ \ \ \textcolor{keywordtype}{void}\ print\_rslt(int8\_t\ rslt);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00253}00253\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00254}00254\ \ \ \ \ TwoWire*\ \_wire;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00255}00255\ \ \ \ \ Stream*\ \_debug\ =\ \textcolor{keyword}{nullptr};\ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00256}00256\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00257}00257\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_\_MBED\_\_}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00258}00258\ \ \ \ \ mbed::Callback<void(\textcolor{keywordtype}{void})>\ \_cb;\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00259}00259\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00261}00261\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_initialized\ =\ \textcolor{keyword}{false};\ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00262}00262\ \ \ \ \ \textcolor{keywordtype}{int}\ \_interrupts\ =\ 0;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00263}00263\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00264}00264\ \ \ \ \ \textcolor{keyword}{struct\ }dev\_info\ accel\_gyro\_dev\_info;\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00265}00265\ \ \ \ \ \textcolor{keyword}{struct\ }dev\_info\ mag\_dev\_info;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00266}00266\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00267}00267\ \ \ \ \ \textcolor{keyword}{struct\ }bmi2\_dev\ bmi2;\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00268}00268\ \ \ \ \ \textcolor{keyword}{struct\ }bmm150\_dev\ bmm1;\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00269}00269\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00270}00270\ \ \ \ \ uint16\_t\ \_int\_status;\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00271}00271\ \ \ \ \ uint8\_t\ \_status;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00272}00272\ \ \ \ \ \textcolor{keywordtype}{bool}\ continuousMode;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8h_source_l00273}00273\ \};}
+
+\end{DoxyCode}

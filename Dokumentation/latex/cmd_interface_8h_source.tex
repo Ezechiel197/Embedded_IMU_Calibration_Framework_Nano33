@@ -1,0 +1,60 @@
+\doxysection{cmd\+Interface.\+h}
+\hypertarget{cmd_interface_8h_source}{}\label{cmd_interface_8h_source}\doxymbox{\hyperlink{cmd_interface_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00011}00011\ \textcolor{preprocessor}{\#ifndef\ CMDINTERFACE\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00012}00012\ \textcolor{preprocessor}{\#define\ CMDINTERFACE\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <NanoBLEFlashPrefs.h>}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00023}00023\ \textcolor{keyword}{extern}\ NanoBLEFlashPrefs\ \doxymbox{\hyperlink{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070}{myFlashPrefs}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00032}\doxymbox{\hyperlink{structflash_struct}{00032}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structflash_struct}{flashStruct}}\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00033}00033\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Beschleunigungssensor\ (Accelerometer)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00034}\doxymbox{\hyperlink{structflash_struct_a09c049aa6d96a1024f36a5f1fdc1831f}{00034}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a09c049aa6d96a1024f36a5f1fdc1831f}{a\_x\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00035}\doxymbox{\hyperlink{structflash_struct_aa4bdf2cafe9a9090c0946ef338891703}{00035}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_aa4bdf2cafe9a9090c0946ef338891703}{a\_y\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00036}\doxymbox{\hyperlink{structflash_struct_ac729c687eeb710eead0efab218ad4f91}{00036}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_ac729c687eeb710eead0efab218ad4f91}{a\_z\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00037}\doxymbox{\hyperlink{structflash_struct_a586b9adda47e69da1e6e8f9a6bc42fc4}{00037}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a586b9adda47e69da1e6e8f9a6bc42fc4}{a\_x\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00038}\doxymbox{\hyperlink{structflash_struct_aaeb309a726c48573e42e542f4853d66a}{00038}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_aaeb309a726c48573e42e542f4853d66a}{a\_y\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00039}\doxymbox{\hyperlink{structflash_struct_a42bf8b3051964e35655b42c3f190cbb6}{00039}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a42bf8b3051964e35655b42c3f190cbb6}{a\_z\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00041}00041\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Magnetometer\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00042}\doxymbox{\hyperlink{structflash_struct_a9e970006d7c6fc6944f32e17b4d5ffee}{00042}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a9e970006d7c6fc6944f32e17b4d5ffee}{m\_x\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00043}\doxymbox{\hyperlink{structflash_struct_a5c962129f95938f84f4bd3ac2ada0d15}{00043}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a5c962129f95938f84f4bd3ac2ada0d15}{m\_y\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00044}\doxymbox{\hyperlink{structflash_struct_aebd8d3362938a946664eabd73f282b35}{00044}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_aebd8d3362938a946664eabd73f282b35}{m\_z\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00045}\doxymbox{\hyperlink{structflash_struct_a28e1e8ea4362f6309ffb26f2900b4ff4}{00045}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a28e1e8ea4362f6309ffb26f2900b4ff4}{m\_x\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00046}\doxymbox{\hyperlink{structflash_struct_ab5444d6bb628508fe2b4f6a4105e3bda}{00046}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_ab5444d6bb628508fe2b4f6a4105e3bda}{m\_y\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00047}\doxymbox{\hyperlink{structflash_struct_a385f69923b23b0d4dd63db983db16d22}{00047}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a385f69923b23b0d4dd63db983db16d22}{m\_z\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00049}00049\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Gyroskop\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00050}\doxymbox{\hyperlink{structflash_struct_a527591f2f151d412d1ec3c96d3a970cc}{00050}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a527591f2f151d412d1ec3c96d3a970cc}{g\_x\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00051}\doxymbox{\hyperlink{structflash_struct_a895bc519a17f48b7562a70f6ca4059b9}{00051}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a895bc519a17f48b7562a70f6ca4059b9}{g\_y\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00052}\doxymbox{\hyperlink{structflash_struct_a2212f05aac95ab25b50c72661ba23fc4}{00052}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a2212f05aac95ab25b50c72661ba23fc4}{g\_z\_ofs}};\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00053}\doxymbox{\hyperlink{structflash_struct_aebf3cfa29fca99897b72d99abc7667cf}{00053}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_aebf3cfa29fca99897b72d99abc7667cf}{g\_x\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00054}\doxymbox{\hyperlink{structflash_struct_a39729cd5a6d44d4589afb65dcf50029d}{00054}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_a39729cd5a6d44d4589afb65dcf50029d}{g\_y\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00055}\doxymbox{\hyperlink{structflash_struct_af3b09211fa35f9e07996bef43c7ade94}{00055}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structflash_struct_af3b09211fa35f9e07996bef43c7ade94}{g\_z\_s}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00056}\doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{00056}}\ \}\ \doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flashPrefs}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00062}00062\ \textcolor{keyword}{extern}\ \doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flashPrefs}}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00069}\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{00069}}\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}\ \{}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00070}\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}{00070}}\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}{IDLE}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00071}\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a8c976a8a38e956ea84eb892daa3f4d68}{00071}}\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a8c976a8a38e956ea84eb892daa3f4d68}{SAMPLING\_G}},\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00072}\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a42a751d407002ed0d0e0e8829a621c3b}{00072}}\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a42a751d407002ed0d0e0e8829a621c3b}{SAMPLING\_A}},\ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00073}\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a96b9cf066c715e54e83d01c50b8e856b}{00073}}\ \ \ \ \ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a96b9cf066c715e54e83d01c50b8e856b}{SAMPLING\_M}}\ \ \ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00074}00074\ \};}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00079}00079\ \textcolor{keyword}{extern}\ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}\ \doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{state}};\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00081}00081\ \textcolor{comment}{/*\ -\/-\/-\/\ Öffentliche\ Funktionsprototypen\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00088}00088\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8h_a793eb0c9e2cf49be0fa78f3f430a9081}{handleSerialInput}}();}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00095}00095\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{cmd_interface_8h_a71b08acccdb6e080e6531b44c196fb01}{processCommand}}();}
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{cmd_interface_8h_source_l00097}00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CMDINTERFACE\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

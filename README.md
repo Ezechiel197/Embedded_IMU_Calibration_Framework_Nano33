@@ -63,3 +63,6 @@ This library is distributed under the terms of the GNU Lesser General Public Lic
 
 **Ezechiel Tonkeme**     
 
+
+<img width="1600" height="1025" alt="WhatsApp Image 2026-06-13 at 20 04 41" src="https://github.com/user-attachments/assets/380b7b61-5602-4ffc-bac7-46dbfb94d041" />
+

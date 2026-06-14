@@ -1,0 +1,488 @@
+\doxysection{cmd\+Interface.\+cpp File Reference}
+\hypertarget{cmd_interface_8cpp}{}\label{cmd_interface_8cpp}\index{cmdInterface.cpp@{cmdInterface.cpp}}
+
+
+Implementierung des seriellen Kommando-\/\+Interfaces und der Parameterverwaltung.  
+
+
+{\ttfamily \+\#include "{}cmd\+Interface.\+h"{}}\newline
+Include dependency graph for cmd\+Interface.\+cpp:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{cmd_interface_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{Param\+Type}} \{ \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd}{PARAM\+\_\+\+FLOAT}}
+, \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845}{PARAM\+\_\+\+BOOL}}
+, \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c}{PARAM\+\_\+\+INVALID}}
+ \}
+\begin{DoxyCompactList}\small\item\em Interne Klassifizierung der unterstützten Parametertypen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7}{parse\+Uint8}} (const char \texorpdfstring{$\ast$}{*}tok, uint8\+\_\+t \&value)
+\begin{DoxyCompactList}\small\item\em Konvertiert ein textbasiertes Token sicher in eine vorzeichenlose 8-\/Bit-\/\+Ganzzahl. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{Param\+Type}} \doxymbox{\hyperlink{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33}{classify\+Param}} (uint8\+\_\+t idx)
+\begin{DoxyCompactList}\small\item\em Klassifiziert einen Parameter anhand seines numerischen Index. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14}{set\+Params}} (char \texorpdfstring{$\ast$}{*}par)
+\begin{DoxyCompactList}\small\item\em Parser-\/ und Setzfunktion für das serielle Kommando \textquotesingle{}s\textquotesingle{}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f}{read\+Params}} (char \texorpdfstring{$\ast$}{*}par)
+\begin{DoxyCompactList}\small\item\em Liest einen Parameter aus und gibt ihn formatiert über UART aus. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632}{get\+ParamF}} (uint8\+\_\+t idx)
+\begin{DoxyCompactList}\small\item\em Getter-\/\+Funktion:\+ Liest eine Fließkommazahl anhand des Index aus der RAM-\/\+Struktur. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a}{set\+ParamF}} (uint8\+\_\+t idx, float v)
+\begin{DoxyCompactList}\small\item\em Setter-\/\+Funktion:\+ Schreibt eine Fließkommazahl direkt in das dedizierte RAM-\/\+Strukturglied. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cmd_interface_8cpp_a793eb0c9e2cf49be0fa78f3f430a9081}{handle\+Serial\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Liest den Hardware-\/\+UART-\/\+Puffer zeilenweise aus. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01}{process\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Zentrale State-\/\+Machine und Befehls-\/\+Interpreter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flash\+Prefs}} \doxymbox{\hyperlink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}
+\begin{DoxyCompactList}\small\item\em Instanz der Flash-\/\+Struktur zur Verwaltung der aktiven Kalibrierparameter. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \doxymbox{\hyperlink{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}{state}} = \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}{IDLE}}
+\begin{DoxyCompactList}\small\item\em Aktueller Zustand der System-\/\+Zustandsmaschine. Initialwert ist IDLE. \end{DoxyCompactList}\item 
+Nano\+BLEFlash\+Prefs \doxymbox{\hyperlink{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070}{my\+Flash\+Prefs}}
+\begin{DoxyCompactList}\small\item\em Globales Objekt zur Abstraktion der Flash-\/\+Speicher-\/\+Zugriffe. \end{DoxyCompactList}\item 
+const byte \doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\+\_\+\+BUF\+\_\+\+LEN}} = 32
+\begin{DoxyCompactList}\small\item\em Maximale Kapazität des seriellen Empfangspuffers in Bytes. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{cmd_interface_8cpp_a2a8a11a5dcb6f75a5879f38296fdbf1e}{NUM\+\_\+\+FLOAT\+\_\+\+PARAMS}} = 18
+\begin{DoxyCompactList}\small\item\em Anzahl der registrierten Fließkomma-\/\+Parameter (Indizes 0 bis 17). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}{NUM\+\_\+\+BOOL\+\_\+\+PARAMS}} = 16
+\begin{DoxyCompactList}\small\item\em Anzahl der registrierten Bool-\/\+Parameter (Indizes 100 bis 115). \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{rx\+Buf}} \+[\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\+\_\+\+BUF\+\_\+\+LEN}}]\+
+\begin{DoxyCompactList}\small\item\em Primärer Empfangspuffer für die ISR/\+\+Byte-\/weise serielle Erfassung. \end{DoxyCompactList}\item 
+byte \doxymbox{\hyperlink{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}{rx\+Pos}} = 0
+\begin{DoxyCompactList}\small\item\em Aktuelle Schreibposition innerhalb des Empfangspuffers {\ttfamily \doxylink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{rx\+Buf}}. \end{DoxyCompactList}\item 
+volatile bool \doxymbox{\hyperlink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmd\+Ready}} = false
+\begin{DoxyCompactList}\small\item\em Event-\/\+Flag:\+ Wird auf {\ttfamily true} gesetzt, sobald eine Zeile komplett empfangen wurde. \end{DoxyCompactList}\item 
+char \doxymbox{\hyperlink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmd\+Buf}} \+[\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\+\_\+\+BUF\+\_\+\+LEN}}]\+
+\begin{DoxyCompactList}\small\item\em Entkoppelter Arbeitspuffer zur sicheren Befehlsverarbeitung in {\ttfamily \doxylink{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01}{process\+Command()}}. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{cmd_interface_8cpp_a71d0245cc5c1e00ae886c2235480ade2}{paramB}} \+[\doxymbox{\hyperlink{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}{NUM\+\_\+\+BOOL\+\_\+\+PARAMS}}]\+
+\begin{DoxyCompactList}\small\item\em Internes Array zur Speicherung der booleschen Systemparameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementierung des seriellen Kommando-\/\+Interfaces und der Parameterverwaltung. 
+
+
+\begin{DoxyItemize}
+\item Dieses Modul verarbeitet die eingehenden seriellen ASCII-\/\+Befehle asynchron, steuert die zentrale Zustandsmaschine (FSM) des Systems und bietet Funktionen zum softwareseitigen Mapping sowie zur persistenten Speicherung der Sensor-\/\+Kalibrierdaten im Flash-\/\+Speicher.
+\item \begin{DoxyAuthor}{Author}
+Ezechiel Tonkeme 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026 
+\end{DoxyDate}
+
+\end{DoxyItemize}
+
+\label{cmd_interface_8cpp_doc-enum-members}
+\Hypertarget{cmd_interface_8cpp_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}\index{cmdInterface.cpp@{cmdInterface.cpp}!ParamType@{ParamType}}
+\index{ParamType@{ParamType}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{ParamType}{ParamType}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81} 
+enum \doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{Param\+Type}}}
+
+
+
+Interne Klassifizierung der unterstützten Parametertypen. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PARAM\_FLOAT@{PARAM\_FLOAT}!cmdInterface.cpp@{cmdInterface.cpp}}
+\index{cmdInterface.cpp@{cmdInterface.cpp}!PARAM\_FLOAT@{PARAM\_FLOAT}}
+}\Hypertarget{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd}\label{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81a5b678b3c24ccb1fc5d503fbe77eb24cd} 
+PARAM\+\_\+\+FLOAT&Parameter ist eine 32-\/Bit-\/\+Fließkommazahl. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PARAM\_BOOL@{PARAM\_BOOL}!cmdInterface.cpp@{cmdInterface.cpp}}
+\index{cmdInterface.cpp@{cmdInterface.cpp}!PARAM\_BOOL@{PARAM\_BOOL}}
+}\Hypertarget{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845}\label{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81ab9c7af48a4aafd6b8faf3ee17f3f0845} 
+PARAM\+\_\+\+BOOL&Parameter ist ein boolescher Zustand (Wahrheitswert). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PARAM\_INVALID@{PARAM\_INVALID}!cmdInterface.cpp@{cmdInterface.cpp}}
+\index{cmdInterface.cpp@{cmdInterface.cpp}!PARAM\_INVALID@{PARAM\_INVALID}}
+}\Hypertarget{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c}\label{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81aa3ba1e6c7e0e8e8f4b72898f98a1de1c} 
+PARAM\+\_\+\+INVALID&Ungültiger Typ /\+ Index außerhalb des erlaubten Bereichs. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{cmd_interface_8cpp_doc-func-members}
+\Hypertarget{cmd_interface_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33}\index{cmdInterface.cpp@{cmdInterface.cpp}!classifyParam@{classifyParam}}
+\index{classifyParam@{classifyParam}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{classifyParam()}{classifyParam()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33} 
+\doxymbox{\hyperlink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{Param\+Type}} classify\+Param (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{idx}{}\end{DoxyParamCaption})}
+
+
+
+Klassifiziert einen Parameter anhand seines numerischen Index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & Der zu prüfende Parameter-\/\+Index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{cmd_interface_8cpp_a3a023c0c27667e78ae521eb64f1c7c81}{Param\+Type} Der ermittelte Typ (FLOAT, BOOL oder INVALID). 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_interface_8cpp_afb8506133c2d34b459fa9ca759109f33_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632}\index{cmdInterface.cpp@{cmdInterface.cpp}!getParamF@{getParamF}}
+\index{getParamF@{getParamF}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{getParamF()}{getParamF()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632} 
+float get\+ParamF (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{idx}{}\end{DoxyParamCaption})}
+
+
+
+Getter-\/\+Funktion:\+ Liest eine Fließkommazahl anhand des Index aus der RAM-\/\+Struktur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & Parameter-\/\+Index (0 bis 17). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Der aktuelle Wert aus der {\ttfamily \doxylink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}}-\/Struktur oder {\ttfamily 0.\+0} bei ungültigem Index. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_interface_8cpp_a5d0dcd359e357a2faca369a9f7c5d632_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cmd_interface_8cpp_a793eb0c9e2cf49be0fa78f3f430a9081}\index{cmdInterface.cpp@{cmdInterface.cpp}!handleSerialInput@{handleSerialInput}}
+\index{handleSerialInput@{handleSerialInput}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{handleSerialInput()}{handleSerialInput()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a793eb0c9e2cf49be0fa78f3f430a9081} 
+void handle\+Serial\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Liest den Hardware-\/\+UART-\/\+Puffer zeilenweise aus. 
+
+Überwacht und liest den seriellen Eingangspuffer aus.
+
+
+\begin{DoxyItemize}
+\item Die Funktion liest nicht-\/blockierend alle verfügbaren Bytes. Bei Erkennung eines Zeilenumbruchs (CR/\+\+LF) wird der String nullterminiert, in den Arbeitspuffer {\ttfamily \doxylink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmd\+Buf}} kopiert und das Verarbeitungsflag {\ttfamily \doxylink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmd\+Ready}} gesetzt. Bei Pufferüberlauf wird der bisherige Inhalt verworfen (Überlaufschutz).
+\end{DoxyItemize}
+
+Liest den Hardware-\/\+UART-\/\+Puffer zeilenweise aus.
+
+
+\begin{DoxyItemize}
+\item Diese Funktion muss zyklisch in der Hauptschleife (loop) aufgerufen werden. Sie puffert eingehende ASCII-\/\+Zeichen, bis ein vollständiger Befehl vorliegt. 
+\end{DoxyItemize}\Hypertarget{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7}\index{cmdInterface.cpp@{cmdInterface.cpp}!parseUint8@{parseUint8}}
+\index{parseUint8@{parseUint8}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{parseUint8()}{parseUint8()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7} 
+bool parse\+Uint8 (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{tok}{, }\item[{uint8\+\_\+t \&}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Konvertiert ein textbasiertes Token sicher in eine vorzeichenlose 8-\/Bit-\/\+Ganzzahl. 
+
+
+\begin{DoxyItemize}
+\item Überprüft das Token auf Nullpointer, konvertiert den String über {\ttfamily strtol} zur Erkennung von Formatfehlern und führt ein striktes Integritäts-\/ und Bounds-\/\+Checking im Wertebereich von 0 bis 255 durch.
+\item 
+\begin{DoxyParams}[1]{Parameters}
+ & {\em tok} & Zeiger auf das zu parsende Text-\/\+Token. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em value} & Referenz auf die Zielvariable zur Rückgabe des Ergebnisses. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true Konvertierung erfolgreich und im Wertebereich gültig. 
+
+false Konvertierungsfehler oder Wertebereichsüberschreitung. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_interface_8cpp_a40d79438c6d3ef38106b8b2dd13611e7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01}\index{cmdInterface.cpp@{cmdInterface.cpp}!processCommand@{processCommand}}
+\index{processCommand@{processCommand}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{processCommand()}{processCommand()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01} 
+void process\+Command (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Zentrale State-\/\+Machine und Befehls-\/\+Interpreter. 
+
+Interpretiert und führt das empfangene serielle Kommando aus.
+
+
+\begin{DoxyItemize}
+\item Falls {\ttfamily \doxylink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmd\+Ready}} gesetzt ist, wird das Flag sofort zurückgesetzt und das erste Zeichen des Puffers extrahiert. Über ein {\ttfamily switch-\/case}-\/Konstrukt werden entweder kontinuierliche Sensor-\/\+Samplings (A, G, M) gestartet, das System gestoppt (S), Parameter modifiziert/\+gelesen (s, r) oder die RAM-\/\+Struktur {\ttfamily \doxylink{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}{prefs}} persistent in den Flash-\/\+Speicher gesichert (w).
+\end{DoxyItemize}
+
+Zentrale State-\/\+Machine und Befehls-\/\+Interpreter.
+
+
+\begin{DoxyItemize}
+\item Analysiert das Befehlszeichen (z.\+B. \textquotesingle{}A\textquotesingle{}, \textquotesingle{}G\textquotesingle{}, \textquotesingle{}M\textquotesingle{}, \textquotesingle{}S\textquotesingle{}, \textquotesingle{}s\textquotesingle{}, \textquotesingle{}r\textquotesingle{}, \textquotesingle{}w\textquotesingle{}) und stößt den entsprechenden Zustandswechsel oder Speicherzugriff an. 
+\end{DoxyItemize}Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f}\index{cmdInterface.cpp@{cmdInterface.cpp}!readParams@{readParams}}
+\index{readParams@{readParams}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{readParams()}{readParams()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f} 
+void read\+Params (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{par}{}\end{DoxyParamCaption})}
+
+
+
+Liest einen Parameter aus und gibt ihn formatiert über UART aus. 
+
+
+\begin{DoxyItemize}
+\item Verarbeitet das serielle Kommando \textquotesingle{}r $<$index$>$\textquotesingle{}. Identifiziert den Typ des Parameters, liest den aktuellen Wert aus dem RAM und spiegelt ihn im Format "{}r $<$index$>$ $<$wert$>$"{} zurück.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em par} & Zeiger auf den Index-\/\+Sub-\/\+String im Arbeitspuffer. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{cmd_interface_8cpp_aa1010073d08d32910376dcf4707aae8f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a}\index{cmdInterface.cpp@{cmdInterface.cpp}!setParamF@{setParamF}}
+\index{setParamF@{setParamF}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{setParamF()}{setParamF()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a} 
+void set\+ParamF (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{idx}{, }\item[{float}]{v}{}\end{DoxyParamCaption})}
+
+
+
+Setter-\/\+Funktion:\+ Schreibt eine Fließkommazahl direkt in das dedizierte RAM-\/\+Strukturglied. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & Parameter-\/\+Index (0 bis 17). \\
+\hline
+{\em v} & Zuzuweisender Fließkommawert. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_interface_8cpp_a0c3cb57764d1035545a75c8ed929e48a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14}\index{cmdInterface.cpp@{cmdInterface.cpp}!setParams@{setParams}}
+\index{setParams@{setParams}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{setParams()}{setParams()}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14} 
+void set\+Params (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{par}{}\end{DoxyParamCaption})}
+
+
+
+Parser-\/ und Setzfunktion für das serielle Kommando \textquotesingle{}s\textquotesingle{}. 
+
+
+\begin{DoxyItemize}
+\item Erwartet einen String im Format "{}$<$index$>$ $<$wert$>$"{}. Tokenisiert die Argumente, prüft die Bereichsgrenzen (Index-\/\+Validierung) und schreibt den konvertierten Wert in die entsprechende Datenstruktur (Flash-\/\+Struktur oder Bool-\/\+Array). Gibt den Erfolg oder Fehler über die serielle Schnittstelle aus.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em par} & Zeiger auf den Parameter-\/\+Sub-\/\+String im Arbeitspuffer. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{cmd_interface_8cpp_aeb8c778242f24a7aad724132b0607d14_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{cmd_interface_8cpp_doc-var-members}
+\Hypertarget{cmd_interface_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}\index{cmdInterface.cpp@{cmdInterface.cpp}!CMD\_BUF\_LEN@{CMD\_BUF\_LEN}}
+\index{CMD\_BUF\_LEN@{CMD\_BUF\_LEN}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{CMD\_BUF\_LEN}{CMD\_BUF\_LEN}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d} 
+const byte CMD\+\_\+\+BUF\+\_\+\+LEN = 32}
+
+
+
+Maximale Kapazität des seriellen Empfangspuffers in Bytes. 
+
+\Hypertarget{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}\index{cmdInterface.cpp@{cmdInterface.cpp}!cmdBuf@{cmdBuf}}
+\index{cmdBuf@{cmdBuf}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{cmdBuf}{cmdBuf}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67} 
+char cmd\+Buf\+[\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\+\_\+\+BUF\+\_\+\+LEN}}]\+}
+
+
+
+Entkoppelter Arbeitspuffer zur sicheren Befehlsverarbeitung in {\ttfamily \doxylink{cmd_interface_8cpp_a71b08acccdb6e080e6531b44c196fb01}{process\+Command()}}. 
+
+\Hypertarget{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}\index{cmdInterface.cpp@{cmdInterface.cpp}!cmdReady@{cmdReady}}
+\index{cmdReady@{cmdReady}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{cmdReady}{cmdReady}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be} 
+volatile bool cmd\+Ready = false}
+
+
+
+Event-\/\+Flag:\+ Wird auf {\ttfamily true} gesetzt, sobald eine Zeile komplett empfangen wurde. 
+
+\Hypertarget{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070}\index{cmdInterface.cpp@{cmdInterface.cpp}!myFlashPrefs@{myFlashPrefs}}
+\index{myFlashPrefs@{myFlashPrefs}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{myFlashPrefs}{myFlashPrefs}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a05c637895d42bb0213e739fc20d9b070} 
+Nano\+BLEFlash\+Prefs my\+Flash\+Prefs}
+
+
+
+Globales Objekt zur Abstraktion der Flash-\/\+Speicher-\/\+Zugriffe. 
+
+Globales Objekt zum Zugriff auf die Flash-\/\+Parameter.
+
+Globales Objekt zur Abstraktion der Flash-\/\+Speicher-\/\+Zugriffe.
+
+
+\begin{DoxyItemize}
+\item Ermöglicht das Lesen und Schreiben von persistenten Daten über die Nano\+BLEFlash\+Prefs-\/\+Bibliothek. 
+\end{DoxyItemize}\Hypertarget{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}\index{cmdInterface.cpp@{cmdInterface.cpp}!NUM\_BOOL\_PARAMS@{NUM\_BOOL\_PARAMS}}
+\index{NUM\_BOOL\_PARAMS@{NUM\_BOOL\_PARAMS}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{NUM\_BOOL\_PARAMS}{NUM\_BOOL\_PARAMS}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2} 
+const uint8\+\_\+t NUM\+\_\+\+BOOL\+\_\+\+PARAMS = 16}
+
+
+
+Anzahl der registrierten Bool-\/\+Parameter (Indizes 100 bis 115). 
+
+\Hypertarget{cmd_interface_8cpp_a2a8a11a5dcb6f75a5879f38296fdbf1e}\index{cmdInterface.cpp@{cmdInterface.cpp}!NUM\_FLOAT\_PARAMS@{NUM\_FLOAT\_PARAMS}}
+\index{NUM\_FLOAT\_PARAMS@{NUM\_FLOAT\_PARAMS}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{NUM\_FLOAT\_PARAMS}{NUM\_FLOAT\_PARAMS}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a2a8a11a5dcb6f75a5879f38296fdbf1e} 
+const uint8\+\_\+t NUM\+\_\+\+FLOAT\+\_\+\+PARAMS = 18}
+
+
+
+Anzahl der registrierten Fließkomma-\/\+Parameter (Indizes 0 bis 17). 
+
+\Hypertarget{cmd_interface_8cpp_a71d0245cc5c1e00ae886c2235480ade2}\index{cmdInterface.cpp@{cmdInterface.cpp}!paramB@{paramB}}
+\index{paramB@{paramB}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{paramB}{paramB}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a71d0245cc5c1e00ae886c2235480ade2} 
+bool paramB\+[\doxymbox{\hyperlink{cmd_interface_8cpp_a03a2ecd8ca4abe083f7786c7111401d2}{NUM\+\_\+\+BOOL\+\_\+\+PARAMS}}]\+}
+
+
+
+Internes Array zur Speicherung der booleschen Systemparameter. 
+
+\Hypertarget{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e}\index{cmdInterface.cpp@{cmdInterface.cpp}!prefs@{prefs}}
+\index{prefs@{prefs}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{prefs}{prefs}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a6636645debe44c3cf970ddaaf429236e} 
+\doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flash\+Prefs}} prefs}
+
+
+
+Instanz der Flash-\/\+Struktur zur Verwaltung der aktiven Kalibrierparameter. 
+
+Globale Instanz der Kalibrierparameter.
+
+Instanz der Flash-\/\+Struktur zur Verwaltung der aktiven Kalibrierparameter.
+
+
+\begin{DoxyItemize}
+\item Hält die aktuell im RAM geladenen und im System aktiven Offsets und Steigungen. 
+\end{DoxyItemize}\Hypertarget{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}\index{cmdInterface.cpp@{cmdInterface.cpp}!rxBuf@{rxBuf}}
+\index{rxBuf@{rxBuf}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{rxBuf}{rxBuf}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5} 
+char rx\+Buf\+[\doxymbox{\hyperlink{cmd_interface_8cpp_a734d30e89b758ea9db56a0747d34188d}{CMD\+\_\+\+BUF\+\_\+\+LEN}}]\+}
+
+
+
+Primärer Empfangspuffer für die ISR/\+\+Byte-\/weise serielle Erfassung. 
+
+\Hypertarget{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7}\index{cmdInterface.cpp@{cmdInterface.cpp}!rxPos@{rxPos}}
+\index{rxPos@{rxPos}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{rxPos}{rxPos}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_af872ba444e7cd86425bb528ddddb36c7} 
+byte rx\+Pos = 0}
+
+
+
+Aktuelle Schreibposition innerhalb des Empfangspuffers {\ttfamily \doxylink{cmd_interface_8cpp_a77c84201caf5081ffa87c84762bea4e5}{rx\+Buf}}. 
+
+\Hypertarget{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79}\index{cmdInterface.cpp@{cmdInterface.cpp}!state@{state}}
+\index{state@{state}!cmdInterface.cpp@{cmdInterface.cpp}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{cmd_interface_8cpp_a876b486d3a5241a126bd5751c5f70f79} 
+\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} state = \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}{IDLE}}}
+
+
+
+Aktueller Zustand der System-\/\+Zustandsmaschine. Initialwert ist IDLE. 
+
+Aktueller Systemzustand der Zustandsmaschine.
+
+Aktueller Zustand der System-\/\+Zustandsmaschine. Initialwert ist IDLE. 

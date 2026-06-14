@@ -1,0 +1,17 @@
+<map id="processCommand" name="processCommand">
+<area shape="rect" id="Node000001" title="Interpretiert und führt das empfangene serielle Kommando aus." alt="" coords="5,81,133,108"/>
+<area shape="rect" id="Node000002" href="$cmd_interface_8cpp.html#aa1010073d08d32910376dcf4707aae8f" title="Liest einen Parameter aus und gibt ihn formatiert über UART aus." alt="" coords="181,107,272,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,102,168,109,163,111,133,108"/>
+<area shape="rect" id="Node000006" href="$cmd_interface_8cpp.html#aeb8c778242f24a7aad724132b0607d14" title="Parser&#45; und Setzfunktion für das serielle Kommando &#39;s&#39;." alt="" coords="184,56,268,83"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="132,82,171,77,167,80,134,87"/>
+<area shape="rect" id="Node000003" href="$cmd_interface_8cpp.html#afb8506133c2d34b459fa9ca759109f33" title="Klassifiziert einen Parameter anhand seines numerischen Index." alt="" coords="320,56,424,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,103,315,89,320,87,268,109"/>
+<area shape="rect" id="Node000004" href="$cmd_interface_8cpp.html#a5d0dcd359e357a2faca369a9f7c5d632" title="Getter&#45;Funktion: Liest eine Fließkommazahl anhand des Index aus der RAM&#45;Struktur." alt="" coords="330,157,415,184"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="268,131,320,152,315,152,267,137"/>
+<area shape="rect" id="Node000005" href="$cmd_interface_8cpp.html#a40d79438c6d3ef38106b8b2dd13611e7" title="Konvertiert ein textbasiertes Token sicher in eine vorzeichenlose 8&#45;Bit&#45;Ganzzahl." alt="" coords="330,107,414,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="272,117,317,120,312,120,273,123"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="269,67,307,69,302,70,270,72"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="267,81,320,101,315,101,267,86"/>
+<area shape="rect" id="Node000007" href="$cmd_interface_8cpp.html#a0c3cb57764d1035545a75c8ed929e48a" title="Setter&#45;Funktion: Schreibt eine Fließkommazahl direkt in das dedizierte RAM&#45;Strukturglied." alt="" coords="330,5,415,32"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="266,53,320,37,315,39,268,58"/>
+</map>

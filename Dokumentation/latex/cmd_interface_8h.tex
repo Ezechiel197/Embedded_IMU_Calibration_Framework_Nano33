@@ -1,0 +1,220 @@
+\doxysection{cmd\+Interface.\+h File Reference}
+\hypertarget{cmd_interface_8h}{}\label{cmd_interface_8h}\index{cmdInterface.h@{cmdInterface.h}}
+{\ttfamily \+\#include "{}stdint.\+h"{}}\newline
+{\ttfamily \+\#include "{}Arduino.\+h"{}}\newline
+{\ttfamily \+\#include $<$Nano\+BLEFlash\+Prefs.\+h$>$}\newline
+Include dependency graph for cmd\+Interface.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{cmd_interface_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{cmd_interface_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structflash_struct}{flash\+Struct}}
+\begin{DoxyCompactList}\small\item\em Struktur zur Speicherung der Sensor-\/\+Kalibrierparameter im Flash-\/\+Speicher. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \doxymbox{\hyperlink{structflash_struct}{flash\+Struct}} \doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flash\+Prefs}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \{ \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}{IDLE}}
+, \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a8c976a8a38e956ea84eb892daa3f4d68}{SAMPLING\+\_\+G}}
+, \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a42a751d407002ed0d0e0e8829a621c3b}{SAMPLING\+\_\+A}}
+, \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a96b9cf066c715e54e83d01c50b8e856b}{SAMPLING\+\_\+M}}
+ \}
+\begin{DoxyCompactList}\small\item\em Definiert die Betriebszustände der System-\/\+Zustandsmaschine (FSM). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{cmd_interface_8h_a793eb0c9e2cf49be0fa78f3f430a9081}{handle\+Serial\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Überwacht und liest den seriellen Eingangspuffer aus. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cmd_interface_8h_a71b08acccdb6e080e6531b44c196fb01}{process\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Interpretiert und führt das empfangene serielle Kommando aus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Nano\+BLEFlash\+Prefs \doxymbox{\hyperlink{cmd_interface_8h_a05c637895d42bb0213e739fc20d9b070}{my\+Flash\+Prefs}}
+\begin{DoxyCompactList}\small\item\em Globales Objekt zum Zugriff auf die Flash-\/\+Parameter. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flash\+Prefs}} \doxymbox{\hyperlink{cmd_interface_8h_a6636645debe44c3cf970ddaaf429236e}{prefs}}
+\begin{DoxyCompactList}\small\item\em Globale Instanz der Kalibrierparameter. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \doxymbox{\hyperlink{cmd_interface_8h_a876b486d3a5241a126bd5751c5f70f79}{state}}
+\begin{DoxyCompactList}\small\item\em Aktueller Systemzustand der Zustandsmaschine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{cmd_interface_8h_doc-typedef-members}
+\Hypertarget{cmd_interface_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}\index{cmdInterface.h@{cmdInterface.h}!flashPrefs@{flashPrefs}}
+\index{flashPrefs@{flashPrefs}!cmdInterface.h@{cmdInterface.h}}
+\doxysubsubsection{\texorpdfstring{flashPrefs}{flashPrefs}}
+{\footnotesize\ttfamily \label{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e} 
+typedef struct \doxymbox{\hyperlink{structflash_struct}{flash\+Struct}} \doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flash\+Prefs}}}
+
+
+
+\label{cmd_interface_8h_doc-enum-members}
+\Hypertarget{cmd_interface_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}\index{cmdInterface.h@{cmdInterface.h}!State@{State}}
+\index{State@{State}!cmdInterface.h@{cmdInterface.h}}
+\doxysubsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily \label{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8} 
+enum \doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}}
+
+
+
+Definiert die Betriebszustände der System-\/\+Zustandsmaschine (FSM). 
+
+
+\begin{DoxyItemize}
+\item Die Zustandssteuerung erfolgt asynchron über das serielle Befehlsinterface. 
+\end{DoxyItemize}\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDLE@{IDLE}!cmdInterface.h@{cmdInterface.h}}
+\index{cmdInterface.h@{cmdInterface.h}!IDLE@{IDLE}}
+}\Hypertarget{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18}\label{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8afd6a0e4343048b10646dd2976cc5ad18} 
+IDLE&Wartezustand:\+ System passiv, wartet auf Kommandos. Setzen/\+\+Lesen von Parametern möglich. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAMPLING\_G@{SAMPLING\_G}!cmdInterface.h@{cmdInterface.h}}
+\index{cmdInterface.h@{cmdInterface.h}!SAMPLING\_G@{SAMPLING\_G}}
+}\Hypertarget{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a8c976a8a38e956ea84eb892daa3f4d68}\label{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a8c976a8a38e956ea84eb892daa3f4d68} 
+SAMPLING\+\_\+G&Kontinuierliche Ausgabe der Gyroskop-\/\+Messwerte in \+[dps]\+ (Degrees per Second). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAMPLING\_A@{SAMPLING\_A}!cmdInterface.h@{cmdInterface.h}}
+\index{cmdInterface.h@{cmdInterface.h}!SAMPLING\_A@{SAMPLING\_A}}
+}\Hypertarget{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a42a751d407002ed0d0e0e8829a621c3b}\label{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a42a751d407002ed0d0e0e8829a621c3b} 
+SAMPLING\+\_\+A&Kontinuierliche Ausgabe der normierten Beschleunigungswerte in \+[g]\+. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAMPLING\_M@{SAMPLING\_M}!cmdInterface.h@{cmdInterface.h}}
+\index{cmdInterface.h@{cmdInterface.h}!SAMPLING\_M@{SAMPLING\_M}}
+}\Hypertarget{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a96b9cf066c715e54e83d01c50b8e856b}\label{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8a96b9cf066c715e54e83d01c50b8e856b} 
+SAMPLING\+\_\+M&Kontinuierliche Ausgabe der Magnetometer-\/\+Messwerte in \+[µT]\+. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{cmd_interface_8h_doc-func-members}
+\Hypertarget{cmd_interface_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{cmd_interface_8h_a793eb0c9e2cf49be0fa78f3f430a9081}\index{cmdInterface.h@{cmdInterface.h}!handleSerialInput@{handleSerialInput}}
+\index{handleSerialInput@{handleSerialInput}!cmdInterface.h@{cmdInterface.h}}
+\doxysubsubsection{\texorpdfstring{handleSerialInput()}{handleSerialInput()}}
+{\footnotesize\ttfamily \label{cmd_interface_8h_a793eb0c9e2cf49be0fa78f3f430a9081} 
+void handle\+Serial\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Überwacht und liest den seriellen Eingangspuffer aus. 
+
+Liest den Hardware-\/\+UART-\/\+Puffer zeilenweise aus.
+
+
+\begin{DoxyItemize}
+\item Diese Funktion muss zyklisch in der Hauptschleife (loop) aufgerufen werden. Sie puffert eingehende ASCII-\/\+Zeichen, bis ein vollständiger Befehl vorliegt.
+\end{DoxyItemize}
+
+Überwacht und liest den seriellen Eingangspuffer aus.
+
+
+\begin{DoxyItemize}
+\item Die Funktion liest nicht-\/blockierend alle verfügbaren Bytes. Bei Erkennung eines Zeilenumbruchs (CR/\+\+LF) wird der String nullterminiert, in den Arbeitspuffer {\ttfamily \doxylink{cmd_interface_8cpp_a2795c268a25d4bb6994517f204fdfe67}{cmd\+Buf}} kopiert und das Verarbeitungsflag {\ttfamily \doxylink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmd\+Ready}} gesetzt. Bei Pufferüberlauf wird der bisherige Inhalt verworfen (Überlaufschutz). 
+\end{DoxyItemize}\Hypertarget{cmd_interface_8h_a71b08acccdb6e080e6531b44c196fb01}\index{cmdInterface.h@{cmdInterface.h}!processCommand@{processCommand}}
+\index{processCommand@{processCommand}!cmdInterface.h@{cmdInterface.h}}
+\doxysubsubsection{\texorpdfstring{processCommand()}{processCommand()}}
+{\footnotesize\ttfamily \label{cmd_interface_8h_a71b08acccdb6e080e6531b44c196fb01} 
+void process\+Command (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Interpretiert und führt das empfangene serielle Kommando aus. 
+
+Zentrale State-\/\+Machine und Befehls-\/\+Interpreter.
+
+
+\begin{DoxyItemize}
+\item Analysiert das Befehlszeichen (z.\+B. \textquotesingle{}A\textquotesingle{}, \textquotesingle{}G\textquotesingle{}, \textquotesingle{}M\textquotesingle{}, \textquotesingle{}S\textquotesingle{}, \textquotesingle{}s\textquotesingle{}, \textquotesingle{}r\textquotesingle{}, \textquotesingle{}w\textquotesingle{}) und stößt den entsprechenden Zustandswechsel oder Speicherzugriff an.
+\end{DoxyItemize}
+
+Interpretiert und führt das empfangene serielle Kommando aus.
+
+
+\begin{DoxyItemize}
+\item Falls {\ttfamily \doxylink{cmd_interface_8cpp_a8c501f53ca37846e1bb88e3e107ed3be}{cmd\+Ready}} gesetzt ist, wird das Flag sofort zurückgesetzt und das erste Zeichen des Puffers extrahiert. Über ein {\ttfamily switch-\/case}-\/Konstrukt werden entweder kontinuierliche Sensor-\/\+Samplings (A, G, M) gestartet, das System gestoppt (S), Parameter modifiziert/\+gelesen (s, r) oder die RAM-\/\+Struktur {\ttfamily \doxylink{cmd_interface_8h_a6636645debe44c3cf970ddaaf429236e}{prefs}} persistent in den Flash-\/\+Speicher gesichert (w). 
+\end{DoxyItemize}Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_interface_8h_a71b08acccdb6e080e6531b44c196fb01_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{cmd_interface_8h_doc-var-members}
+\Hypertarget{cmd_interface_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{cmd_interface_8h_a05c637895d42bb0213e739fc20d9b070}\index{cmdInterface.h@{cmdInterface.h}!myFlashPrefs@{myFlashPrefs}}
+\index{myFlashPrefs@{myFlashPrefs}!cmdInterface.h@{cmdInterface.h}}
+\doxysubsubsection{\texorpdfstring{myFlashPrefs}{myFlashPrefs}}
+{\footnotesize\ttfamily \label{cmd_interface_8h_a05c637895d42bb0213e739fc20d9b070} 
+Nano\+BLEFlash\+Prefs my\+Flash\+Prefs\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Globales Objekt zum Zugriff auf die Flash-\/\+Parameter. 
+
+Globales Objekt zur Abstraktion der Flash-\/\+Speicher-\/\+Zugriffe.
+
+
+\begin{DoxyItemize}
+\item Ermöglicht das Lesen und Schreiben von persistenten Daten über die Nano\+BLEFlash\+Prefs-\/\+Bibliothek.
+\end{DoxyItemize}
+
+Globales Objekt zum Zugriff auf die Flash-\/\+Parameter. \Hypertarget{cmd_interface_8h_a6636645debe44c3cf970ddaaf429236e}\index{cmdInterface.h@{cmdInterface.h}!prefs@{prefs}}
+\index{prefs@{prefs}!cmdInterface.h@{cmdInterface.h}}
+\doxysubsubsection{\texorpdfstring{prefs}{prefs}}
+{\footnotesize\ttfamily \label{cmd_interface_8h_a6636645debe44c3cf970ddaaf429236e} 
+\doxymbox{\hyperlink{cmd_interface_8h_aa72b9eb0922064eaee8547cb2316700e}{flash\+Prefs}} prefs\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Globale Instanz der Kalibrierparameter. 
+
+Instanz der Flash-\/\+Struktur zur Verwaltung der aktiven Kalibrierparameter.
+
+
+\begin{DoxyItemize}
+\item Hält die aktuell im RAM geladenen und im System aktiven Offsets und Steigungen.
+\end{DoxyItemize}
+
+Globale Instanz der Kalibrierparameter. \Hypertarget{cmd_interface_8h_a876b486d3a5241a126bd5751c5f70f79}\index{cmdInterface.h@{cmdInterface.h}!state@{state}}
+\index{state@{state}!cmdInterface.h@{cmdInterface.h}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{cmd_interface_8h_a876b486d3a5241a126bd5751c5f70f79} 
+\doxymbox{\hyperlink{cmd_interface_8h_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} state\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Aktueller Systemzustand der Zustandsmaschine. 
+
+Aktueller Zustand der System-\/\+Zustandsmaschine. Initialwert ist IDLE.
+
+Aktueller Systemzustand der Zustandsmaschine. 

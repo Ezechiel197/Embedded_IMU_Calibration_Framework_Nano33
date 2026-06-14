@@ -1,0 +1,75 @@
+\doxysection{Bm\+Imu.\+h File Reference}
+\hypertarget{_bm_imu_8h}{}\label{_bm_imu_8h}\index{BmImu.h@{BmImu.h}}
+{\ttfamily \+\#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \+\#include $<$Wire.\+h$>$}\newline
+{\ttfamily \+\#include "{}bmi270.\+h"{}}\newline
+{\ttfamily \+\#include "{}bmm150.\+h"{}}\newline
+Include dependency graph for Bm\+Imu.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_bm_imu_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{_bm_imu_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structdev__info}{dev\+\_\+info}}
+\begin{DoxyCompactList}\small\item\em Interne Struktur zur Zuordnung der \$\textbackslash{}text\{I\}\texorpdfstring{$^\wedge$}{\string^}2\textbackslash{}text\{C\}\$-\/Businstanz und der Hardware-\/\+Adresse. \end{DoxyCompactList}\item 
+class \doxymbox{\hyperlink{class_bm_imu}{Bm\+Imu}}
+\begin{DoxyCompactList}\small\item\em Abstraktionsklasse für die Sensor-\/\+ICs Bosch BMI270 (IMU) und BMM150 (Magnetometer). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{Cfg\+Bosch\+Sensor\+\_\+t}} \{ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a0f4ce9b5c44fd001a2fb00ca407409b5}{BOSCH\+\_\+\+ACCELEROMETER\+\_\+\+ONLY}}
+, \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a5f5545c505a124e957f688ebcdc17204}{BOSCH\+\_\+\+MAGNETOMETER\+\_\+\+ONLY}}
+, \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{BOSCH\+\_\+\+ACCEL\+\_\+\+AND\+\_\+\+MAGN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Konfigurationsmodi für die Sensorinitialisierung. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_bm_imu_8h_doc-enum-members}
+\Hypertarget{_bm_imu_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}\index{BmImu.h@{BmImu.h}!CfgBoschSensor\_t@{CfgBoschSensor\_t}}
+\index{CfgBoschSensor\_t@{CfgBoschSensor\_t}!BmImu.h@{BmImu.h}}
+\doxysubsubsection{\texorpdfstring{CfgBoschSensor\_t}{CfgBoschSensor\_t}}
+{\footnotesize\ttfamily \label{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7} 
+enum \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{Cfg\+Bosch\+Sensor\+\_\+t}}}
+
+
+
+Konfigurationsmodi für die Sensorinitialisierung. 
+
+
+\begin{DoxyItemize}
+\item Bestimmt, welche physikalischen Sensoren beim Systemstart aktiviert werden sollen. 
+\end{DoxyItemize}\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSCH\_ACCELEROMETER\_ONLY@{BOSCH\_ACCELEROMETER\_ONLY}!BmImu.h@{BmImu.h}}
+\index{BmImu.h@{BmImu.h}!BOSCH\_ACCELEROMETER\_ONLY@{BOSCH\_ACCELEROMETER\_ONLY}}
+}\Hypertarget{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a0f4ce9b5c44fd001a2fb00ca407409b5}\label{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a0f4ce9b5c44fd001a2fb00ca407409b5} 
+BOSCH\+\_\+\+ACCELEROMETER\+\_\+\+ONLY&Nur die IMU (Beschleunigung/\+\+Gyroskop) aktivieren. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSCH\_MAGNETOMETER\_ONLY@{BOSCH\_MAGNETOMETER\_ONLY}!BmImu.h@{BmImu.h}}
+\index{BmImu.h@{BmImu.h}!BOSCH\_MAGNETOMETER\_ONLY@{BOSCH\_MAGNETOMETER\_ONLY}}
+}\Hypertarget{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a5f5545c505a124e957f688ebcdc17204}\label{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a5f5545c505a124e957f688ebcdc17204} 
+BOSCH\+\_\+\+MAGNETOMETER\+\_\+\+ONLY&Nur das Magnetometer aktivieren. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSCH\_ACCEL\_AND\_MAGN@{BOSCH\_ACCEL\_AND\_MAGN}!BmImu.h@{BmImu.h}}
+\index{BmImu.h@{BmImu.h}!BOSCH\_ACCEL\_AND\_MAGN@{BOSCH\_ACCEL\_AND\_MAGN}}
+}\Hypertarget{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}\label{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805} 
+BOSCH\+\_\+\+ACCEL\+\_\+\+AND\+\_\+\+MAGN&Beide Sensoreinheiten (Kombibetrieb) aktivieren. \\
+\hline
+
+\end{DoxyEnumFields}

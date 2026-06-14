@@ -1,0 +1,5 @@
+<map id="readParams" name="readParams">
+<area shape="rect" id="Node000001" title="Liest einen Parameter aus und gibt ihn formatiert über UART aus." alt="" coords="181,5,272,32"/>
+<area shape="rect" id="Node000002" href="$cmd_interface_8cpp.html#a71b08acccdb6e080e6531b44c196fb01" title="Zentrale State&#45;Machine und Befehls&#45;Interpreter." alt="" coords="5,5,133,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,19,133,21,133,16,168,18"/>
+</map>

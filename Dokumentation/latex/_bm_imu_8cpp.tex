@@ -1,0 +1,67 @@
+\doxysection{Bm\+Imu.\+cpp File Reference}
+\hypertarget{_bm_imu_8cpp}{}\label{_bm_imu_8cpp}\index{BmImu.cpp@{BmImu.cpp}}
+
+
+Implementierung der Bm\+Imu-\/\+Klasse zur Abstraktion der Bosch BMI270 und BMM150 Treiber.  
+
+
+{\ttfamily \+\#include "{}Bm\+Imu.\+h"{}}\newline
+Include dependency graph for Bm\+Imu.\+cpp:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_bm_imu_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}{INT16\+\_\+to\+\_\+G}}~(8192.\+0f)
+\begin{DoxyCompactList}\small\item\em Konversionsfaktor für den Beschleunigungssensor. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}{INT16\+\_\+to\+\_\+\+DPS}}~(16.\+384f)
+\begin{DoxyCompactList}\small\item\em Konversionsfaktor für das Gyroskop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementierung der Bm\+Imu-\/\+Klasse zur Abstraktion der Bosch BMI270 und BMM150 Treiber. 
+
+
+\begin{DoxyItemize}
+\item Enthält die Initialisierungsroutinen, das FIFO-\/ und Energiemanagement, die hardwarenahen \$\textbackslash{}text\{I\}\texorpdfstring{$^\wedge$}{\string^}2\textbackslash{}text\{C\}\$-\/Wrapper, hardwareabhängige Achsen-\/\+Transformationen sowie die Fehlerbehandlung inklusive einer optischen Panic-\/\+LED-\/\+Schleife.
+\item \begin{DoxyCopyright}{Copyright}
+Copyright (c) 2019 Arduino SA. All rights reserved. @license GNU Lesser General Public License v2.\+1 
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Ezechiel Tonkeme 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026 
+\end{DoxyDate}
+
+\end{DoxyItemize}
+
+\label{_bm_imu_8cpp_doc-define-members}
+\Hypertarget{_bm_imu_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}\index{BmImu.cpp@{BmImu.cpp}!INT16\_to\_DPS@{INT16\_to\_DPS}}
+\index{INT16\_to\_DPS@{INT16\_to\_DPS}!BmImu.cpp@{BmImu.cpp}}
+\doxysubsubsection{\texorpdfstring{INT16\_to\_DPS}{INT16\_to\_DPS}}
+{\footnotesize\ttfamily \label{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671} 
+\+\#define INT16\+\_\+to\+\_\+\+DPS~(16.\+384f)}
+
+
+
+Konversionsfaktor für das Gyroskop. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Der Messbereich ist auf \$\textbackslash{}pm 2000\textbackslash{},\textbackslash{}text\{dps\}\$ eingestellt. Die \$16\textbackslash{}text\{-\/Bit\}\$-\/Auflösung (\$2\texorpdfstring{$^\wedge$}{\string^}\{15\} = 32768\$) konvertiert sich somit über \$32768 /\+ 2000 = 16.\+384\textbackslash{},\textbackslash{}text\{LSB/\+(°/\+s)\}\$. \Hypertarget{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}\index{BmImu.cpp@{BmImu.cpp}!INT16\_to\_G@{INT16\_to\_G}}
+\index{INT16\_to\_G@{INT16\_to\_G}!BmImu.cpp@{BmImu.cpp}}
+\doxysubsubsection{\texorpdfstring{INT16\_to\_G}{INT16\_to\_G}}
+{\footnotesize\ttfamily \label{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a} 
+\+\#define INT16\+\_\+to\+\_\+G~(8192.\+0f)}
+
+
+
+Konversionsfaktor für den Beschleunigungssensor. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Da der Standardmessbereich auf \$\textbackslash{}pm 4\textbackslash{},\textbackslash{}text\{g\}\$ eingestellt ist, verteilt sich der Wertebereich eines {\ttfamily int16\+\_\+t} (\$2\texorpdfstring{$^\wedge$}{\string^}\{15\} = 32768\$) auf \$4\textbackslash{},\textbackslash{}text\{g\}\$. Daraus folgt:\+ \$32768 /\+ 4 = 8192\textbackslash{},\textbackslash{}text\{LSB/\+g\}\$. 

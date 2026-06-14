@@ -1,0 +1,9 @@
+<map id="readParams" name="readParams">
+<area shape="rect" id="Node000001" title="Liest einen Parameter aus und gibt ihn formatiert über UART aus." alt="" coords="5,56,97,83"/>
+<area shape="rect" id="Node000002" href="$cmd_interface_8cpp.html#afb8506133c2d34b459fa9ca759109f33" title="Klassifiziert einen Parameter anhand seines numerischen Index." alt="" coords="145,5,249,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,53,144,36,140,39,93,58"/>
+<area shape="rect" id="Node000003" href="$cmd_interface_8cpp.html#a5d0dcd359e357a2faca369a9f7c5d632" title="Getter&#45;Funktion: Liest eine Fließkommazahl anhand des Index aus der RAM&#45;Struktur." alt="" coords="154,56,240,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,67,141,68,136,70,98,72"/>
+<area shape="rect" id="Node000004" href="$cmd_interface_8cpp.html#a40d79438c6d3ef38106b8b2dd13611e7" title="Konvertiert ein textbasiertes Token sicher in eine vorzeichenlose 8&#45;Bit&#45;Ganzzahl." alt="" coords="155,107,239,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="92,81,144,100,139,102,91,86"/>
+</map>

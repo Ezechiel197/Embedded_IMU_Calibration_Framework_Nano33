@@ -1,0 +1,581 @@
+\doxysection{Bm\+Imu Class Reference}
+\hypertarget{class_bm_imu}{}\label{class_bm_imu}\index{BmImu@{BmImu}}
+
+
+Abstraktionsklasse für die Sensor-\/\+ICs Bosch BMI270 (IMU) und BMM150 (Magnetometer).  
+
+
+
+
+{\ttfamily \+\#include $<$Bm\+Imu.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_bm_imu_ab4966a5a2b953a492f981631958c78ff}{Bm\+Imu}} (Two\+Wire \&wire=Wire)
+\begin{DoxyCompactList}\small\item\em Konstruktor der Bm\+Imu-\/\+Klasse. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_bm_imu_af6bba39d5fbb4d3686038159cedcdbf9}{\texorpdfstring{$\sim$}{\string~}\+Bm\+Imu}} ()
+\begin{DoxyCompactList}\small\item\em Destruktor der Bm\+Imu-\/\+Klasse. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bm_imu_a3fea0e971e8f0b39f5f1d0c7a6b0b22f}{set\+Continuous\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Versetzt die Sensoren in den kontinuierlichen Erfassungsmodus (Continuous Mode). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bm_imu_a6b5868265e5ed40d79e64ae005706acd}{one\+Shot\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Versetzt die Sensoren in den One-\/\+Shot-\/\+Modus (Messung nur auf explizite Anforderung). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_bm_imu_a981b8fa270856d26cdfeea15164cfc21}{begin}} (\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{Cfg\+Bosch\+Sensor\+\_\+t}} cfg=\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{BOSCH\+\_\+\+ACCEL\+\_\+\+AND\+\_\+\+MAGN}})
+\begin{DoxyCompactList}\small\item\em Initialisiert die Hardware und konfiguriert die Sensor-\/\+ICs. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bm_imu_a2cc56841daea89c2092a300f79a6e935}{end}} ()
+\begin{DoxyCompactList}\small\item\em Beendet den Sensorbetrieb und gibt Ressourcen frei (Hinweis:\+ Aktuell rein deklarativ). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bm_imu_a01dad8b8e6ec814079583bd56ad1b659}{debug}} (Stream \&stream)
+\begin{DoxyCompactList}\small\item\em Aktiviert die Debug-\/\+Ausgabe auf der übergebenen Stream-\/\+Schnittstelle. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_bm_imu_a0e924f6a788dfa8bc3ca2e6adc465d12}{read\+Acceleration}} (float \&x, float \&y, float \&z)
+\begin{DoxyCompactList}\small\item\em Liest die aktuellen Beschleunigungswerte aus. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_bm_imu_a699313215421ee16217bd692d327fa98}{acceleration\+Available}} ()
+\begin{DoxyCompactList}\small\item\em Prüft, ob neue Beschleunigungsdaten im FIFO/\+\+Register verfügbar sind. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_bm_imu_a54a8d1b4aaae3c7e680a2c80f2e43178}{acceleration\+Sample\+Rate}} ()
+\begin{DoxyCompactList}\small\item\em Gibt die aktuell konfigurierte Abtastrate des Beschleunigungssensors zurück. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bm_imu_a242983a33da7b916cb95394d793ab264}{acceleration\+Available\+Statusbit}} ()
+\begin{DoxyCompactList}\small\item\em Liest das spezifische Daten-\/\+Bereit-\/\+Statusbit des Beschleunigungssensors aus. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_bm_imu_a88858cc3e757f456610f756fb219976c}{read\+Gyroscope}} (float \&x, float \&y, float \&z)
+\begin{DoxyCompactList}\small\item\em Liest die aktuellen Winkelgeschwindigkeiten aus. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_bm_imu_a5cfbb7f2f8739265a48442ee9233df52}{gyroscope\+Available}} ()
+\begin{DoxyCompactList}\small\item\em Gibt die Anzahl der verfügbaren Gyroskop-\/\+Messwerte im FIFO-\/\+Puffer zurück. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_bm_imu_ada99fd2d1fd871ac99492cf377436d72}{gyroscope\+Sample\+Rate}} ()
+\begin{DoxyCompactList}\small\item\em Gibt die aktuell konfigurierte Abtastrate des Gyroskops zurück. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_bm_imu_a5055d19765b55d0fb3ca2eced77a7249}{gyroscope\+Available\+Statusbit}} ()
+\begin{DoxyCompactList}\small\item\em Liest das spezifische Daten-\/\+Bereit-\/\+Statusbit des Gyroskops aus. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_bm_imu_a876aa5e913c0142e4e0151ac3c2a8fc9}{read\+Magnetic\+Field}} (float \&x, float \&y, float \&z)
+\begin{DoxyCompactList}\small\item\em Liest die aktuelle magnetische Flussdichte aus. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_bm_imu_a8a5a25fe4e9aad6729dd17cc23c26220}{magnetic\+Field\+Available}} ()
+\begin{DoxyCompactList}\small\item\em Gibt die Anzahl der verfügbaren Magnetometer-\/\+Messwerte im FIFO-\/\+Puffer zurück. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_bm_imu_ae69be785360ac26284753be15383eb40}{magnetic\+Field\+Sample\+Rate}} ()
+\begin{DoxyCompactList}\small\item\em Gibt die aktuell konfigurierte Abtastrate des Magnetometers zurück. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_bm_imu_a091d5f4f23a7157714b5ae1e25162f8f}{magnetic\+Field\+Available\+Statusbit}} ()
+\begin{DoxyCompactList}\small\item\em Prüft das Daten-\/\+Bereit-\/\+Statusbit des Magnetometers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \doxymbox{\hyperlink{class_bm_imu_a5b1e55713e83f459d0a9b47f24205604}{configure\+\_\+sensor}} (struct bmm150\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Interne hardwarenahe Konfiguration des BMM150 Magnetometer-\/\+ICs. \end{DoxyCompactList}\item 
+int8\+\_\+t \doxymbox{\hyperlink{class_bm_imu_a338feaf71cf3967f305eec40d417d239}{configure\+\_\+sensor}} (struct bmi2\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Interne hardwarenahe Konfiguration des BMI270 IMU-\/\+ICs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstraktionsklasse für die Sensor-\/\+ICs Bosch BMI270 (IMU) und BMM150 (Magnetometer). 
+
+
+\begin{DoxyItemize}
+\item Bietet eine standardisierte objektorientierte API zum Auslesen der kinematischen und magnetischen Messdaten auf dem Arduino Nano 33 BLE Sense. 
+\end{DoxyItemize}
+
+\label{class_bm_imu_doc-constructors}
+\Hypertarget{class_bm_imu_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_bm_imu_ab4966a5a2b953a492f981631958c78ff}\index{BmImu@{BmImu}!BmImu@{BmImu}}
+\index{BmImu@{BmImu}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{BmImu()}{BmImu()}}
+{\footnotesize\ttfamily \label{class_bm_imu_ab4966a5a2b953a492f981631958c78ff} 
+Bm\+Imu::\+\+Bm\+Imu (\begin{DoxyParamCaption}\item[{Two\+Wire \&}]{wire}{ = {\ttfamily Wire}}\end{DoxyParamCaption})}
+
+
+
+Konstruktor der Bm\+Imu-\/\+Klasse. 
+
+Konstruktor:\+ Initialisiert die Klassenvariablen und setzt plattformspezifische Pins.
+
+
+\begin{DoxyParams}{Parameters}
+{\em wire} & Referenz auf das zu verwendende Two\+Wire (\$\textbackslash{}text\{I\}\texorpdfstring{$^\wedge$}{\string^}2\textbackslash{}text\{C\}\$) Objekt (Standard:\+ Wire).\\
+\hline
+{\em wire} & Referenz auf die zu nutzende Two\+Wire-\/\+Instanz (\$\textbackslash{}text\{I\}\texorpdfstring{$^\wedge$}{\string^}2\textbackslash{}text\{C\}\$). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_bm_imu_af6bba39d5fbb4d3686038159cedcdbf9}\index{BmImu@{BmImu}!````~BmImu@{\texorpdfstring{$\sim$}{\string~}BmImu}}
+\index{````~BmImu@{\texorpdfstring{$\sim$}{\string~}BmImu}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}BmImu()}{\string~BmImu()}}
+{\footnotesize\ttfamily \label{class_bm_imu_af6bba39d5fbb4d3686038159cedcdbf9} 
+Bm\+Imu::\+\texorpdfstring{$\sim$}{\string~}\+Bm\+Imu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destruktor der Bm\+Imu-\/\+Klasse. 
+
+
+
+\label{class_bm_imu_doc-func-members}
+\Hypertarget{class_bm_imu_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bm_imu_a699313215421ee16217bd692d327fa98}\index{BmImu@{BmImu}!accelerationAvailable@{accelerationAvailable}}
+\index{accelerationAvailable@{accelerationAvailable}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{accelerationAvailable()}{accelerationAvailable()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a699313215421ee16217bd692d327fa98} 
+int Bm\+Imu::\+acceleration\+Available (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Prüft, ob neue Beschleunigungsdaten im FIFO/\+\+Register verfügbar sind. 
+
+Überprüft den Hardware-\/\+Interrupt-\/\+Status auf neue Beschleunigungsdaten (Data Ready).
+
+\begin{DoxyReturn}{Returns}
+int Maskierter Statuswert ({\ttfamily INT\+\_\+\+STATUS} verknüpft mit {\ttfamily BMI2\+\_\+\+ACC\+\_\+\+DRDY\+\_\+\+INT\+\_\+\+MASK}).
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Liest das Interrupt-\/\+Statusregister, maskiert das {\ttfamily BMI2\+\_\+\+ACC\+\_\+\+DRDY\+\_\+\+INT\+\_\+\+MASK}-\/Bit und löscht das Bit anschließend im internen Zustandscache, um Mehrfachauswertungen zu verhindern.
+\item \begin{DoxyReturn}{Returns}
+int Maskierter Statuswert ungleich {\ttfamily 0}, wenn neue Daten bereitstehen. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{class_bm_imu_a242983a33da7b916cb95394d793ab264}\index{BmImu@{BmImu}!accelerationAvailableStatusbit@{accelerationAvailableStatusbit}}
+\index{accelerationAvailableStatusbit@{accelerationAvailableStatusbit}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{accelerationAvailableStatusbit()}{accelerationAvailableStatusbit()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a242983a33da7b916cb95394d793ab264} 
+uint8\+\_\+t Bm\+Imu::\+acceleration\+Available\+Statusbit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Liest das spezifische Daten-\/\+Bereit-\/\+Statusbit des Beschleunigungssensors aus. 
+
+Abfrage des globalen Daten-\/\+Bereit-\/\+Statusbits für die Beschleunigungskomponente.
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Statusbit (0 oder 1).
+
+uint8\+\_\+t {\ttfamily 1} wenn Daten verfügbar, andernfalls {\ttfamily 0}. 
+\end{DoxyReturn}
+\Hypertarget{class_bm_imu_a54a8d1b4aaae3c7e680a2c80f2e43178}\index{BmImu@{BmImu}!accelerationSampleRate@{accelerationSampleRate}}
+\index{accelerationSampleRate@{accelerationSampleRate}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{accelerationSampleRate()}{accelerationSampleRate()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a54a8d1b4aaae3c7e680a2c80f2e43178} 
+float Bm\+Imu::\+acceleration\+Sample\+Rate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gibt die aktuell konfigurierte Abtastrate des Beschleunigungssensors zurück. 
+
+Berechnet die aktuelle Abtastrate (ODR) des Beschleunigungssensors.
+
+\begin{DoxyReturn}{Returns}
+float Die Abtastrate (Sampling Rate) in Hz.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Liest die ODR-\/\+Registerkonfiguration aus und berechnet die Frequenz in Hz über die herstellerspezifische Formel der Bosch-\/\+API.
+\item \begin{DoxyReturn}{Returns}
+float Die konfigurierte Abtastrate in Hz. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{class_bm_imu_a981b8fa270856d26cdfeea15164cfc21}\index{BmImu@{BmImu}!begin@{begin}}
+\index{begin@{begin}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a981b8fa270856d26cdfeea15164cfc21} 
+int Bm\+Imu::\+begin (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{Cfg\+Bosch\+Sensor\+\_\+t}}}]{cfg}{ = {\ttfamily \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{BOSCH\+\_\+\+ACCEL\+\_\+\+AND\+\_\+\+MAGN}}}}\end{DoxyParamCaption})}
+
+
+
+Initialisiert die Hardware und konfiguriert die Sensor-\/\+ICs. 
+
+Initialisiert den \$\textbackslash{}text\{I\}\texorpdfstring{$^\wedge$}{\string^}2\textbackslash{}text\{C\}\$-\/Bus sowie die Bosch Treiberstrukturen für BMI270 und BMM150.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Der gewünschte Betriebsmodus aus \doxylink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{Cfg\+Bosch\+Sensor\+\_\+t} (Standard:\+ Kombibetrieb). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 0} bei erfolgreicher Initialisierung, negativer Fehlercode bei Fehlschlag.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Konfiguriert die Funktionspointer für Lese-\/, Schreib-\/ und Delayoperationen, lädt die Sensor-\/\+Standardkonfigurationen, setzt die Taktfrequenz des \$\textbackslash{}text\{I\}\texorpdfstring{$^\wedge$}{\string^}2\textbackslash{}text\{C\}\$-\/Busses auf 400 k\+Hz und überprüft die erfolgreiche Kommunikation mit den ICs.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Gewünschte Sensoraktivierung aus \doxylink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{Cfg\+Bosch\+Sensor\+\_\+t}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 1} bei erfolgreicher Initialisierung aller gewählten Sensoren, {\ttfamily 0} bei Fehlern. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{class_bm_imu_a981b8fa270856d26cdfeea15164cfc21_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bm_imu_a338feaf71cf3967f305eec40d417d239}\index{BmImu@{BmImu}!configure\_sensor@{configure\_sensor}}
+\index{configure\_sensor@{configure\_sensor}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{configure\_sensor()}{configure\_sensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_bm_imu_a338feaf71cf3967f305eec40d417d239} 
+int8\+\_\+t Bm\+Imu::\+configure\+\_\+sensor (\begin{DoxyParamCaption}\item[{struct bmi2\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Interne hardwarenahe Konfiguration des BMI270 IMU-\/\+ICs. 
+
+Interne Konfigurationsfunktion für das BMI270 IMU-\/\+IC.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Zeiger auf die Bosch-\/\+Treiberstruktur der IMU. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t Statuscode der Bosch-\/\+API.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Richtet den Interrupt-\/\+Pin INT1 (Active High, Push-\/\+Pull, Output enabled) ein, setzt die Abtastrate für Beschleunigung und Gyroskop auf 50 Hz, wählt die Arbeitsbereiche (\$\textbackslash{}pm 4\textbackslash{},\textbackslash{}text\{g\}\$ und \$\textbackslash{}pm 2000\textbackslash{},\textbackslash{}text\{dps\}\$) und deaktiviert den Advanced-\/\+Power-\/\+Save-\/\+Modus für stabileres Signalverhalten während transienter Messungen.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em dev} & Zeiger auf die Bosch Treiberstruktur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t Statuscode der Operation ({\ttfamily BMI2\+\_\+\+OK} bei Erfolg). 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{class_bm_imu_a5b1e55713e83f459d0a9b47f24205604}\index{BmImu@{BmImu}!configure\_sensor@{configure\_sensor}}
+\index{configure\_sensor@{configure\_sensor}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{configure\_sensor()}{configure\_sensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_bm_imu_a5b1e55713e83f459d0a9b47f24205604} 
+int8\+\_\+t Bm\+Imu::\+configure\+\_\+sensor (\begin{DoxyParamCaption}\item[{struct bmm150\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Interne hardwarenahe Konfiguration des BMM150 Magnetometer-\/\+ICs. 
+
+Interne Konfigurationsfunktion für das BMM150 Magnetometer-\/\+IC.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Zeiger auf die Bosch-\/\+Treiberstruktur des Magnetometers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t Statuscode der Bosch-\/\+API.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Setzt den Power-\/\+Modus auf Normalbetrieb, konfiguriert das vordefinierte Messprofil auf \textquotesingle{}Enhanced\textquotesingle{} (Erhöhte Präzision durch erweitertes Oversampling) und schaltet den hardwareseitigen Data-\/\+Ready-\/\+Pin (DRDY) frei.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em dev} & Zeiger auf die Bosch Magnetometer Treiberstruktur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t Statuscode der Operation ({\ttfamily BMM150\+\_\+\+OK} bei Erfolg). 
+\end{DoxyReturn}
+
+\end{DoxyItemize}Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{class_bm_imu_a5b1e55713e83f459d0a9b47f24205604_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bm_imu_a01dad8b8e6ec814079583bd56ad1b659}\index{BmImu@{BmImu}!debug@{debug}}
+\index{debug@{debug}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{debug()}{debug()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a01dad8b8e6ec814079583bd56ad1b659} 
+void Bm\+Imu::\+debug (\begin{DoxyParamCaption}\item[{Stream \&}]{stream}{}\end{DoxyParamCaption})}
+
+
+
+Aktiviert die Debug-\/\+Ausgabe auf der übergebenen Stream-\/\+Schnittstelle. 
+
+Setzt den Stream-\/\+Zeiger für die Ausgabe von Debug-\/ und Fehlermeldungen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & Referenz auf ein Stream-\/\+Objekt (z.\+B. Serial).\\
+\hline
+{\em stream} & Referenz auf ein gültiges Stream-\/\+Objekt (z. B. Serial). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_bm_imu_a2cc56841daea89c2092a300f79a6e935}\index{BmImu@{BmImu}!end@{end}}
+\index{end@{end}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a2cc56841daea89c2092a300f79a6e935} 
+void Bm\+Imu::\+end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Beendet den Sensorbetrieb und gibt Ressourcen frei (Hinweis:\+ Aktuell rein deklarativ). 
+
+\Hypertarget{class_bm_imu_a5cfbb7f2f8739265a48442ee9233df52}\index{BmImu@{BmImu}!gyroscopeAvailable@{gyroscopeAvailable}}
+\index{gyroscopeAvailable@{gyroscopeAvailable}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{gyroscopeAvailable()}{gyroscopeAvailable()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a5cfbb7f2f8739265a48442ee9233df52} 
+int Bm\+Imu::\+gyroscope\+Available (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gibt die Anzahl der verfügbaren Gyroskop-\/\+Messwerte im FIFO-\/\+Puffer zurück. 
+
+Überprüft den Hardware-\/\+Interrupt-\/\+Status auf neue Gyroskopedaten.
+
+\begin{DoxyReturn}{Returns}
+int Anzahl der Samples.
+
+int Maskierter Statuswert ungleich {\ttfamily 0}, wenn neue Daten bereitstehen. 
+\end{DoxyReturn}
+\Hypertarget{class_bm_imu_a5055d19765b55d0fb3ca2eced77a7249}\index{BmImu@{BmImu}!gyroscopeAvailableStatusbit@{gyroscopeAvailableStatusbit}}
+\index{gyroscopeAvailableStatusbit@{gyroscopeAvailableStatusbit}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{gyroscopeAvailableStatusbit()}{gyroscopeAvailableStatusbit()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a5055d19765b55d0fb3ca2eced77a7249} 
+uint8\+\_\+t Bm\+Imu::\+gyroscope\+Available\+Statusbit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Liest das spezifische Daten-\/\+Bereit-\/\+Statusbit des Gyroskops aus. 
+
+Abfrage des globalen Daten-\/\+Bereit-\/\+Statusbits für das Gyroskop.
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Statusbit (0 oder 1).
+
+uint8\+\_\+t {\ttfamily 1} wenn Daten verfügbar, andernfalls {\ttfamily 0}. 
+\end{DoxyReturn}
+\Hypertarget{class_bm_imu_ada99fd2d1fd871ac99492cf377436d72}\index{BmImu@{BmImu}!gyroscopeSampleRate@{gyroscopeSampleRate}}
+\index{gyroscopeSampleRate@{gyroscopeSampleRate}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{gyroscopeSampleRate()}{gyroscopeSampleRate()}}
+{\footnotesize\ttfamily \label{class_bm_imu_ada99fd2d1fd871ac99492cf377436d72} 
+float Bm\+Imu::\+gyroscope\+Sample\+Rate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gibt die aktuell konfigurierte Abtastrate des Gyroskops zurück. 
+
+Berechnet die aktuelle Abtastrate (ODR) des Gyroskops in Hz.
+
+\begin{DoxyReturn}{Returns}
+float Die Abtastrate in Hz.
+
+float Die ODR in Hz. 
+\end{DoxyReturn}
+\Hypertarget{class_bm_imu_a8a5a25fe4e9aad6729dd17cc23c26220}\index{BmImu@{BmImu}!magneticFieldAvailable@{magneticFieldAvailable}}
+\index{magneticFieldAvailable@{magneticFieldAvailable}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{magneticFieldAvailable()}{magneticFieldAvailable()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a8a5a25fe4e9aad6729dd17cc23c26220} 
+int Bm\+Imu::\+magnetic\+Field\+Available (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gibt die Anzahl der verfügbaren Magnetometer-\/\+Messwerte im FIFO-\/\+Puffer zurück. 
+
+Überprüft, ob ein Data-\/\+Ready-\/\+Interrupt vom Magnetometer erzeugt wurde.
+
+\begin{DoxyReturn}{Returns}
+int Anzahl der Samples.
+
+int Ungleich {\ttfamily 0}, falls der DRDY-\/\+Interrupt aktiv war. 
+\end{DoxyReturn}
+\Hypertarget{class_bm_imu_a091d5f4f23a7157714b5ae1e25162f8f}\index{BmImu@{BmImu}!magneticFieldAvailableStatusbit@{magneticFieldAvailableStatusbit}}
+\index{magneticFieldAvailableStatusbit@{magneticFieldAvailableStatusbit}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{magneticFieldAvailableStatusbit()}{magneticFieldAvailableStatusbit()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a091d5f4f23a7157714b5ae1e25162f8f} 
+bool Bm\+Imu::\+magnetic\+Field\+Available\+Statusbit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Prüft das Daten-\/\+Bereit-\/\+Statusbit des Magnetometers. 
+
+Pollt das dedizierte Statusregister des BMM150, um neue Daten anzuzeigen.
+
+\begin{DoxyReturn}{Returns}
+true Neue Magnetometerdaten sind verfügbar. 
+
+false Keine neuen Daten verfügbar.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Liest das Register {\ttfamily BMM150\+\_\+\+REG\+\_\+\+DATA\+\_\+\+READY\+\_\+\+STATUS} (0x48) direkt aus und isoliert das Data-\/\+Ready-\/\+Bit über Makros.
+\item \begin{DoxyReturn}{Returns}
+true Neue Magnetometerdaten liegen im Register vor. 
+
+false Keine neuen Daten verfügbar oder I2\+C-\/\+Fehler. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{class_bm_imu_ae69be785360ac26284753be15383eb40}\index{BmImu@{BmImu}!magneticFieldSampleRate@{magneticFieldSampleRate}}
+\index{magneticFieldSampleRate@{magneticFieldSampleRate}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{magneticFieldSampleRate()}{magneticFieldSampleRate()}}
+{\footnotesize\ttfamily \label{class_bm_imu_ae69be785360ac26284753be15383eb40} 
+float Bm\+Imu::\+magnetic\+Field\+Sample\+Rate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gibt die aktuell konfigurierte Abtastrate des Magnetometers zurück. 
+
+Gibt die konfigurierte Abtastrate des Magnetometers aus.
+
+\begin{DoxyReturn}{Returns}
+float Die Abtastrate in Hz.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Übersetzt das interne Einstellungsregister des BMM150 in diskrete Hz-\/\+Werte (2, 6, 8, 10, 15, 20, 25, 30 Hz).
+\item \begin{DoxyReturn}{Returns}
+float Die Datenrate in Hz. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{class_bm_imu_a6b5868265e5ed40d79e64ae005706acd}\index{BmImu@{BmImu}!oneShotMode@{oneShotMode}}
+\index{oneShotMode@{oneShotMode}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{oneShotMode()}{oneShotMode()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a6b5868265e5ed40d79e64ae005706acd} 
+void Bm\+Imu::\+one\+Shot\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Versetzt die Sensoren in den One-\/\+Shot-\/\+Modus (Messung nur auf explizite Anforderung). 
+
+Schaltet die Sensoren in den One-\/\+Shot-\/\+Modus (Streaming deaktiviert).
+
+
+\begin{DoxyItemize}
+\item Deaktiviert den internen FIFO-\/\+Speicher des BMI270. Daten müssen explizit gepollt werden. 
+\end{DoxyItemize}\Hypertarget{class_bm_imu_a0e924f6a788dfa8bc3ca2e6adc465d12}\index{BmImu@{BmImu}!readAcceleration@{readAcceleration}}
+\index{readAcceleration@{readAcceleration}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{readAcceleration()}{readAcceleration()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a0e924f6a788dfa8bc3ca2e6adc465d12} 
+int Bm\+Imu::\+read\+Acceleration (\begin{DoxyParamCaption}\item[{float \&}]{x}{, }\item[{float \&}]{y}{, }\item[{float \&}]{z}{}\end{DoxyParamCaption})}
+
+
+
+Liest die aktuellen Beschleunigungswerte aus. 
+
+Holt die aktuellen Beschleunigungswerte und rechnet sie in die physikalische Einheit \+[g]\+ um.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em x} & Referenz für den Ausgabewert der X-\/\+Achse in \+[g]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em y} & Referenz für den Ausgabewert der Y-\/\+Achse in \+[g]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em z} & Referenz für den Ausgabewert der Z-\/\+Achse in \+[g]\+. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 1} bei Erfolg, {\ttfamily 0} bei Fehlern.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auf dem {\bfseries{Arduino Nano 33 BLE}} ist der Sensor mechanisch gedreht verbaut. Hier findet ein automatisches Remapping der Achsen statt (\$\+X\+\_\+\{\textbackslash{}text\{out\}\} = -\/Y\+\_\+\{\textbackslash{}text\{raw\}\}\$, \$\+Y\+\_\+\{\textbackslash{}text\{out\}\} = -\/X\+\_\+\{\textbackslash{}text\{raw\}\}\$), um die Standard-\/\+Rechtssystem-\/\+Konvention der Platine zu wahren.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em x} & Beschleunigung der X-\/\+Achse in \+[g]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em y} & Beschleunigung der Y-\/\+Achse in \+[g]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em z} & Beschleunigung der Z-\/\+Achse in \+[g]\+. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 1} bei erfolgreichem Lesen aus der Bosch-\/\+API, {\ttfamily 0} bei Fehler. 
+\end{DoxyReturn}
+\Hypertarget{class_bm_imu_a88858cc3e757f456610f756fb219976c}\index{BmImu@{BmImu}!readGyroscope@{readGyroscope}}
+\index{readGyroscope@{readGyroscope}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{readGyroscope()}{readGyroscope()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a88858cc3e757f456610f756fb219976c} 
+int Bm\+Imu::\+read\+Gyroscope (\begin{DoxyParamCaption}\item[{float \&}]{x}{, }\item[{float \&}]{y}{, }\item[{float \&}]{z}{}\end{DoxyParamCaption})}
+
+
+
+Liest die aktuellen Winkelgeschwindigkeiten aus. 
+
+Holt die aktuellen Winkelgeschwindigkeiten und rechnet diese in \+[°/\+s]\+ (dps) um.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em x} & Referenz für die Drehrate der X-\/\+Achse in \+[°/\+s]\+ (dps). \\
+\hline
+\doxymbox{\texttt{out}}  & {\em y} & Referenz für die Drehrate der Y-\/\+Achse in \+[°/\+s]\+ (dps). \\
+\hline
+\doxymbox{\texttt{out}}  & {\em z} & Referenz für die Drehrate der Z-\/\+Achse in \+[°/\+s]\+ (dps). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 1} bei Erfolg, {\ttfamily 0} bei Fehlern.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Beachtet analog zur Beschleunigung das plattformspezifische Achsen-\/\+Remapping des Nano 33 BLE. 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em x} & Drehrate der X-\/\+Achse in \+[°/\+s]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em y} & Drehrate der Y-\/\+Achse in \+[°/\+s]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em z} & Drehrate der Z-\/\+Achse in \+[°/\+s]\+. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 1} bei Erfolg, {\ttfamily 0} bei Fehlern. 
+\end{DoxyReturn}
+\Hypertarget{class_bm_imu_a876aa5e913c0142e4e0151ac3c2a8fc9}\index{BmImu@{BmImu}!readMagneticField@{readMagneticField}}
+\index{readMagneticField@{readMagneticField}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{readMagneticField()}{readMagneticField()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a876aa5e913c0142e4e0151ac3c2a8fc9} 
+int Bm\+Imu::\+read\+Magnetic\+Field (\begin{DoxyParamCaption}\item[{float \&}]{x}{, }\item[{float \&}]{y}{, }\item[{float \&}]{z}{}\end{DoxyParamCaption})}
+
+
+
+Liest die aktuelle magnetische Flussdichte aus. 
+
+Liest die aktuellen Magnetfeldstärken des BMM150 aus.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em x} & Referenz für den Magnetfeldwert der X-\/\+Achse in \+[µT]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em y} & Referenz für den Magnetfeldwert der Y-\/\+Achse in \+[µT]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em z} & Referenz für den Magnetfeldwert der Z-\/\+Achse in \+[µT]\+. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 1} bei Erfolg, {\ttfamily 0} bei Fehlern.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Die Werte werden vom nativen Bosch-\/\+Treiber direkt in Mikrotesla \+[µT]\+ übergeben.
+\item 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em x} & Magnetische Flussdichte der X-\/\+Achse in \+[µT]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em y} & Magnetische Flussdichte der Y-\/\+Achse in \+[µT]\+. \\
+\hline
+\doxymbox{\texttt{out}}  & {\em z} & Magnetische Flussdichte der Z-\/\+Achse in \+[µT]\+. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int {\ttfamily 1} bei erfolgreicher Erfassung ({\ttfamily BMM150\+\_\+\+OK}), andernfalls {\ttfamily 0}. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{class_bm_imu_a3fea0e971e8f0b39f5f1d0c7a6b0b22f}\index{BmImu@{BmImu}!setContinuousMode@{setContinuousMode}}
+\index{setContinuousMode@{setContinuousMode}!BmImu@{BmImu}}
+\doxysubsubsection{\texorpdfstring{setContinuousMode()}{setContinuousMode()}}
+{\footnotesize\ttfamily \label{class_bm_imu_a3fea0e971e8f0b39f5f1d0c7a6b0b22f} 
+void Bm\+Imu::\+set\+Continuous\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Versetzt die Sensoren in den kontinuierlichen Erfassungsmodus (Continuous Mode). 
+
+Schaltet die Sensoren in den kontinuierlichen FIFO-\/\+Erfassungsmodus (Continuous Mode).
+
+
+\begin{DoxyItemize}
+\item Aktiviert den internen FIFO-\/\+Speicher des BMI270 für Beschleunigungs-\/ und Gyroskopdaten. 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_bm_imu_8h}{Bm\+Imu.\+h}}\item 
+\doxymbox{\hyperlink{_bm_imu_8cpp}{Bm\+Imu.\+cpp}}\end{DoxyCompactItemize}

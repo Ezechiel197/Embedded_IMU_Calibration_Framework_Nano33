@@ -1,0 +1,9 @@
+<map id="setParams" name="setParams">
+<area shape="rect" id="Node000001" title="Parser&#45; und Setzfunktion für das serielle Kommando &#39;s&#39;." alt="" coords="5,56,90,83"/>
+<area shape="rect" id="Node000002" href="$cmd_interface_8cpp.html#afb8506133c2d34b459fa9ca759109f33" title="Klassifiziert einen Parameter anhand seines numerischen Index." alt="" coords="138,5,242,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,53,138,36,134,40,89,58"/>
+<area shape="rect" id="Node000003" href="$cmd_interface_8cpp.html#a40d79438c6d3ef38106b8b2dd13611e7" title="Konvertiert ein textbasiertes Token sicher in eine vorzeichenlose 8&#45;Bit&#45;Ganzzahl." alt="" coords="148,56,232,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,67,135,68,130,71,90,72"/>
+<area shape="rect" id="Node000004" href="$cmd_interface_8cpp.html#a0c3cb57764d1035545a75c8ed929e48a" title="Setter&#45;Funktion: Schreibt eine Fließkommazahl direkt in das dedizierte RAM&#45;Strukturglied." alt="" coords="147,107,232,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="88,81,138,100,133,102,87,86"/>
+</map>

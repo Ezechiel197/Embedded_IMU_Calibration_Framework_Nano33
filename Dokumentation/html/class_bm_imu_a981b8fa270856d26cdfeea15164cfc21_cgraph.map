@@ -1,0 +1,5 @@
+<map id="BmImu::begin" name="BmImu::begin">
+<area shape="rect" id="Node000001" title="Initialisiert die Hardware und konfiguriert die Sensor&#45;ICs." alt="" coords="5,5,108,32"/>
+<area shape="rect" id="Node000002" href="$class_bm_imu.html#a5b1e55713e83f459d0a9b47f24205604" title="Interne hardwarenahe Konfiguration des BMM150 Magnetometer&#45;ICs." alt="" coords="156,5,326,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,16,143,18,137,19,108,21"/>
+</map>

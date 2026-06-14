@@ -1,0 +1,120 @@
+\doxysection{Bm\+Imu.\+h}
+\hypertarget{_bm_imu_8h_source}{}\label{_bm_imu_8h_source}\doxymbox{\hyperlink{_bm_imu_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}bmi270.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}bmm150.h"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a0f4ce9b5c44fd001a2fb00ca407409b5}{BOSCH\_ACCELEROMETER\_ONLY}},\ }
+\DoxyCodeLine{00025\ \ \ \ \ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a5f5545c505a124e957f688ebcdc17204}{BOSCH\_MAGNETOMETER\_ONLY}},\ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{BOSCH\_ACCEL\_AND\_MAGN}}\ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \}\ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{CfgBoschSensor\_t}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structdev__info}{dev\_info}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ TwoWire*\ \doxymbox{\hyperlink{structdev__info_a8ba656edae71df993d0c193c675f7cd3}{\_wire}};\ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{structdev__info_a9cfeb7ab58bf00b798612e70c6f1d23d}{dev\_addr}};\ \ }
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_bm_imu_ab4966a5a2b953a492f981631958c78ff}{BmImu}}\ \{}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \doxymbox{\hyperlink{class_bm_imu_ab4966a5a2b953a492f981631958c78ff}{BmImu}}(TwoWire\&\ wire\ =\ Wire);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \doxymbox{\hyperlink{class_bm_imu_af6bba39d5fbb4d3686038159cedcdbf9}{\string~BmImu}}()\ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_a3fea0e971e8f0b39f5f1d0c7a6b0b22f}{setContinuousMode}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_a6b5868265e5ed40d79e64ae005706acd}{oneShotMode}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a981b8fa270856d26cdfeea15164cfc21}{begin}}(\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{CfgBoschSensor\_t}}\ cfg\ =\ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7af3281c9d6f578da61a53f285558c0805}{BOSCH\_ACCEL\_AND\_MAGN}});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_a2cc56841daea89c2092a300f79a6e935}{end}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_a01dad8b8e6ec814079583bd56ad1b659}{debug}}(Stream\&\ stream);}
+\DoxyCodeLine{00084\ \ \ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_\_MBED\_\_}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ onInterrupt(mbed::Callback<\textcolor{keywordtype}{void}()>\ callback);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ setInterruptPin(PinName\ irq\_pin)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ BMI270\_INT1\ =\ irq\_pin;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ setInterruptPin(pin\_size\_t\ irq\_pin)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ BMI270\_INT1\ =\ digitalPinToPinName(irq\_pin);}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ PinName\ BMI270\_INT1\ =\ NC;\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00110\ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Beschleunigungssensor\ (Accelerometer)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a0e924f6a788dfa8bc3ca2e6adc465d12}{readAcceleration}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a699313215421ee16217bd692d327fa98}{accelerationAvailable}}();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_a54a8d1b4aaae3c7e680a2c80f2e43178}{accelerationSampleRate}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bm_imu_a242983a33da7b916cb95394d793ab264}{accelerationAvailableStatusbit}}();}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Gyroskop\ (Drehratensensor)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a88858cc3e757f456610f756fb219976c}{readGyroscope}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a5cfbb7f2f8739265a48442ee9233df52}{gyroscopeAvailable}}();}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_ada99fd2d1fd871ac99492cf377436d72}{gyroscopeSampleRate}}();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00167\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{class_bm_imu_a5055d19765b55d0fb3ca2eced77a7249}{gyroscopeAvailableStatusbit}}();}
+\DoxyCodeLine{00168\ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Magnetometer\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a876aa5e913c0142e4e0151ac3c2a8fc9}{readMagneticField}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a8a5a25fe4e9aad6729dd17cc23c26220}{magneticFieldAvailable}}();}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_ae69be785360ac26284753be15383eb40}{magneticFieldSampleRate}}();}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_bm_imu_a091d5f4f23a7157714b5ae1e25162f8f}{magneticFieldAvailableStatusbit}}();}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00205\ \ \ \ \ int8\_t\ \doxymbox{\hyperlink{class_bm_imu_a5b1e55713e83f459d0a9b47f24205604}{configure\_sensor}}(\textcolor{keyword}{struct}\ bmm150\_dev\ *dev);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00212\ \ \ \ \ int8\_t\ \doxymbox{\hyperlink{class_bm_imu_a5b1e55713e83f459d0a9b47f24205604}{configure\_sensor}}(\textcolor{keyword}{struct}\ bmi2\_dev\ *dev);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{static}\ int8\_t\ bmi2\_i2c\_read(uint8\_t\ reg\_addr,\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{static}\ int8\_t\ bmi2\_i2c\_write(uint8\_t\ reg\_addr,\ \textcolor{keyword}{const}\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ bmi2\_delay\_us(uint32\_t\ period,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ interrupt\_handler();}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{void}\ print\_rslt(int8\_t\ rslt);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00254\ \ \ \ \ TwoWire*\ \_wire;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ Stream*\ \_debug\ =\ \textcolor{keyword}{nullptr};\ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ }
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_\_MBED\_\_}}
+\DoxyCodeLine{00258\ \ \ \ \ mbed::Callback<void(\textcolor{keywordtype}{void})>\ \_cb;\ }
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_initialized\ =\ \textcolor{keyword}{false};\ \ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{int}\ \_interrupts\ =\ 0;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00263\ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{struct\ }dev\_info\ accel\_gyro\_dev\_info;\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{struct\ }dev\_info\ mag\_dev\_info;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{struct\ }bmi2\_dev\ bmi2;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{struct\ }bmm150\_dev\ bmm1;\ \ \ \ \ }
+\DoxyCodeLine{00269\ \ \ \ \ }
+\DoxyCodeLine{00270\ \ \ \ \ uint16\_t\ \_int\_status;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00271\ \ \ \ \ uint8\_t\ \_status;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{bool}\ continuousMode;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00273\ \};}
+
+\end{DoxyCode}

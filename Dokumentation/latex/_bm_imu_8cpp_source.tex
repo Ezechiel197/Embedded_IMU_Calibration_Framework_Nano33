@@ -1,0 +1,535 @@
+\doxysection{Bm\+Imu.\+cpp}
+\hypertarget{_bm_imu_8cpp_source}{}\label{_bm_imu_8cpp_source}\doxymbox{\hyperlink{_bm_imu_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_bm_imu_8h}{BmImu.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#ifdef\ \_\_MBED\_\_}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}mbed\_events.h"{}}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}mbed\_shared\_queues.h"{}}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}drivers/InterruptIn.h"{}}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00022}00022\ \textcolor{keyword}{static}\ events::EventQueue\ queue(10\ *\ EVENTS\_EVENT\_SIZE);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00024}00024\ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00029}\doxymbox{\hyperlink{class_bm_imu_acf45b0250f34d545660de7d1d0d357aa}{00029}}\ \doxymbox{\hyperlink{class_bm_imu_acf45b0250f34d545660de7d1d0d357aa}{BmImu::BmImu}}(TwoWire\&\ wire)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00031}00031\ \ \ \_wire\ =\ \&wire;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\ \ \#ifdef\ TARGET\_ARDUINO\_NANO33BLE}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00033}00033\ \ \ BMI270\_INT1\ =\ p11;\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00034}00034\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00035}00035\ \}\ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00041}\doxymbox{\hyperlink{class_bm_imu_ab42dc6eac2b711dba589d8aa50b950e8}{00041}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_ab42dc6eac2b711dba589d8aa50b950e8}{BmImu::setContinuousMode}}()\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00043}00043\ \ \ bmi2\_set\_fifo\_config(BMI2\_FIFO\_GYR\_EN\ |\ BMI2\_FIFO\_ACC\_EN,\ 1,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00044}00044\ \ \ continuousMode\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00051}\doxymbox{\hyperlink{class_bm_imu_a21eff97915b0048a4d8433752cd7595b}{00051}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_a21eff97915b0048a4d8433752cd7595b}{BmImu::oneShotMode}}()\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00052}00052\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00053}00053\ \ \ bmi2\_set\_fifo\_config(BMI2\_FIFO\_GYR\_EN\ |\ BMI2\_FIFO\_ACC\_EN,\ 0,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00054}00054\ \ \ continuousMode\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00065}\doxymbox{\hyperlink{class_bm_imu_afbce546b1d19d7054f6096f4a85039ba}{00065}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_afbce546b1d19d7054f6096f4a85039ba}{BmImu::begin}}(\doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7}{CfgBoschSensor\_t}}\ cfg)\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00066}00066\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00067}00067\ \ \ \_wire-\/>begin();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00069}00069\ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ BMI270\ Struktur-\/Setup\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00070}00070\ \ \ bmi2.chip\_id\ =\ BMI2\_I2C\_PRIM\_ADDR;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00071}00071\ \ \ bmi2.read\ =\ bmi2\_i2c\_read;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00072}00072\ \ \ bmi2.write\ =\ bmi2\_i2c\_write;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00073}00073\ \ \ bmi2.delay\_us\ =\ bmi2\_delay\_us;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00074}00074\ \ \ bmi2.intf\ =\ BMI2\_I2C\_INTF;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00075}00075\ \ \ bmi2.intf\_ptr\ =\ \&accel\_gyro\_dev\_info;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00076}00076\ \ \ bmi2.read\_write\_len\ =\ 30;\ \ \ \ \ \textcolor{comment}{//\ Hardware-\/Limitierung\ der\ Arduino\ Wire-\/Bibliothek\ (Buffer)}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00077}00077\ \ \ bmi2.config\_file\_ptr\ =\ NULL;\ \ \textcolor{comment}{//\ Nutzt\ das\ im\ C-\/Treiber\ integrierte\ Default-\/Konfigurationsarray}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00079}00079\ \ \ accel\_gyro\_dev\_info.\_wire\ =\ \_wire;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00080}00080\ \ \ accel\_gyro\_dev\_info.dev\_addr\ =\ bmi2.chip\_id;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00082}00082\ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ BMM150\ Struktur-\/Setup\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00083}00083\ \ \ bmm1.chip\_id\ =\ BMM150\_DEFAULT\_I2C\_ADDRESS;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00084}00084\ \ \ bmm1.read\ =\ bmi2\_i2c\_read;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00085}00085\ \ \ bmm1.write\ =\ bmi2\_i2c\_write;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00086}00086\ \ \ bmm1.delay\_us\ =\ bmi2\_delay\_us;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00087}00087\ \ \ bmm1.intf\ =\ BMM150\_I2C\_INTF;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00088}00088\ \ \ bmm1.intf\_ptr\ =\ \&mag\_dev\_info;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00090}00090\ \ \ mag\_dev\_info.\_wire\ =\ \_wire;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00091}00091\ \ \ mag\_dev\_info.dev\_addr\ =\ bmm1.chip\_id;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00093}00093\ \ \ int8\_t\ result\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00095}00095\ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Hardware-\/Initialisierung\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00096}00096\ \ \ \textcolor{keywordflow}{if}(cfg\ !=\ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a5f5545c505a124e957f688ebcdc17204}{BOSCH\_MAGNETOMETER\_ONLY}})\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00097}00097\ \ \ \ \ result\ |=\ bmi270\_init(\&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00098}00098\ \ \ \ \ print\_rslt(result);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00100}00100\ \ \ \ \ result\ |=\ \doxymbox{\hyperlink{class_bm_imu_adde849eaffa4d095d7a036cfae72a14d}{configure\_sensor}}(\&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00101}00101\ \ \ \ \ print\_rslt(result);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00102}00102\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00104}00104\ \ \ \textcolor{keywordflow}{if}(cfg\ !=\ \doxymbox{\hyperlink{_bm_imu_8h_aca2133255159a76a97c87b899d9f2ba7a0f4ce9b5c44fd001a2fb00ca407409b5}{BOSCH\_ACCELEROMETER\_ONLY}})\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00105}00105\ \ \ \ \ result\ |=\ bmm150\_init(\&bmm1);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00106}00106\ \ \ \ \ print\_rslt(result);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00108}00108\ \ \ \ \ result\ =\ \doxymbox{\hyperlink{class_bm_imu_adde849eaffa4d095d7a036cfae72a14d}{configure\_sensor}}(\&bmm1);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00109}00109\ \ \ \ \ print\_rslt(result);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00110}00110\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00112}00112\ \ \ \textcolor{comment}{//\ Erhöhe\ den\ I2C-\/Bustakt\ auf\ Fast\ Mode\ (400\ kHz)\ für\ schnellere\ Datenübertragung}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00113}00113\ \ \ \_wire-\/>setClock(400000);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00115}00115\ \ \ \_initialized\ =\ (result\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00116}00116\ \ \ \textcolor{keywordflow}{return}\ \_initialized;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00117}00117\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00123}\doxymbox{\hyperlink{class_bm_imu_ae2ee06d2aa23720696b7884c5d007ff7}{00123}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_bm_imu_ae2ee06d2aa23720696b7884c5d007ff7}{BmImu::debug}}(Stream\&\ stream)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00124}00124\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00125}00125\ \ \ \_debug\ =\ \&stream;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00126}00126\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00128}00128\ \textcolor{preprocessor}{\#ifdef\ \_\_MBED\_\_}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00135}00135\ \textcolor{keywordtype}{void}\ BmImu::onInterrupt(mbed::Callback<\textcolor{keywordtype}{void}(\textcolor{keywordtype}{void})>\ cb)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00136}00136\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00137}00137\ \ \ \textcolor{keywordflow}{if}\ (BMI270\_INT1\ ==\ NC)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00139}00139\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00140}00140\ \ \ \textcolor{keyword}{static}\ mbed::InterruptIn\ irq(BMI270\_INT1,\ PullDown);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00141}00141\ \ \ \textcolor{keyword}{static}\ rtos::Thread\ event\_t(osPriorityHigh,\ 768,\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}events"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00142}00142\ \ \ \_cb\ =\ cb;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00143}00143\ \ \ event\_t.start(callback(\&queue,\ \&events::EventQueue::dispatch\_forever));}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00144}00144\ \ \ irq.rise(mbed::callback(\textcolor{keyword}{this},\ \&BmImu::interrupt\_handler));}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00145}00145\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00146}00146\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00153}\doxymbox{\hyperlink{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}{00153}}\ \textcolor{preprocessor}{\#define\ INT16\_to\_G\ \ \ (8192.0f)}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00165}\doxymbox{\hyperlink{class_bm_imu_a070ab2b9af48dc9cb8c34070fc4d3836}{00165}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a070ab2b9af48dc9cb8c34070fc4d3836}{BmImu::readAcceleration}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z)\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00166}00166\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00167}00167\ \ \ \textcolor{keyword}{struct\ }bmi2\_sens\_data\ sensor\_data;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00168}00168\ \ \ \textcolor{keyword}{auto}\ ret\ =\ bmi2\_get\_sensor\_data(\&sensor\_data,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00169}00169\ \textcolor{preprocessor}{\ \ \#ifdef\ TARGET\_ARDUINO\_NANO33BLE}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00170}00170\ \ \ x\ =\ -\/sensor\_data.acc.y\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}{INT16\_to\_G}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00171}00171\ \ \ y\ =\ -\/sensor\_data.acc.x\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}{INT16\_to\_G}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00172}00172\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00173}00173\ \ \ x\ =\ sensor\_data.acc.x\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}{INT16\_to\_G}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00174}00174\ \ \ y\ =\ sensor\_data.acc.y\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}{INT16\_to\_G}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00175}00175\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00176}00176\ \ \ z\ =\ sensor\_data.acc.z\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a2b3645249ed01fdc043d59749dc93f6a}{INT16\_to\_G}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00177}00177\ \ \ \textcolor{keywordflow}{return}\ (ret\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00178}00178\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00186}\doxymbox{\hyperlink{class_bm_imu_a893cc561afb713bd296cb1c6199484cf}{00186}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a893cc561afb713bd296cb1c6199484cf}{BmImu::accelerationAvailable}}()\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00187}00187\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00188}00188\ \ \ uint16\_t\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00189}00189\ \ \ bmi2\_get\_int\_status(\&status,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00190}00190\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ ((status\ |\ \_int\_status)\ \&\ BMI2\_ACC\_DRDY\_INT\_MASK);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00191}00191\ \ \ \_int\_status\ =\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00192}00192\ \ \ \_int\_status\ \&=\ \string~BMI2\_ACC\_DRDY\_INT\_MASK;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00193}00193\ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00194}00194\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00202}\doxymbox{\hyperlink{class_bm_imu_ad1c1ae91da4c02d69030702307096cbf}{00202}}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_ad1c1ae91da4c02d69030702307096cbf}{BmImu::accelerationSampleRate}}()\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00203}00203\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00204}00204\ \ \ \textcolor{keyword}{struct\ }bmi2\_sens\_config\ sens\_cfg;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00205}00205\ \ \ sens\_cfg.type\ =\ BMI2\_ACCEL;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00206}00206\ \ \ bmi2\_get\_sensor\_config(\&sens\_cfg,\ 1,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00207}00207\ \ \ \textcolor{keywordflow}{return}\ (1\ <<\ sens\_cfg.cfg.acc.odr)\ *\ 0.39;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00208}00208\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00214}\doxymbox{\hyperlink{class_bm_imu_a33681a85a8ff00c09e6e6b7a9e604e49}{00214}}\ uint8\_t\ \doxymbox{\hyperlink{class_bm_imu_a33681a85a8ff00c09e6e6b7a9e604e49}{BmImu::accelerationAvailableStatusbit}}()}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00215}00215\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00216}00216\ \ \ uint8\_t\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00217}00217\ \ \ bmi2\_get\_status(\&status,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00218}00218\ \ \ uint8\_t\ ret\ =\ ((status\ |\ \_status)\ \&\ BMI2\_DRDY\_ACC);\ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00219}00219\ \ \ \_status\ =\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00220}00220\ \ \ \_status\ \&=\ \string~BMI2\_DRDY\_ACC;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00221}00221\ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00222}00222\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00228}\doxymbox{\hyperlink{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}{00228}}\ \textcolor{preprocessor}{\#define\ INT16\_to\_DPS\ \ \ (16.384f)}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00238}\doxymbox{\hyperlink{class_bm_imu_ae6218ba77e6b1fe79b0186cff9141742}{00238}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_ae6218ba77e6b1fe79b0186cff9141742}{BmImu::readGyroscope}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00239}00239\ \ \ \textcolor{keyword}{struct\ }bmi2\_sens\_data\ sensor\_data;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00240}00240\ \ \ \textcolor{keyword}{auto}\ ret\ =\ bmi2\_get\_sensor\_data(\&sensor\_data,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00241}00241\ \textcolor{preprocessor}{\ \ \#ifdef\ TARGET\_ARDUINO\_NANO33BLE}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00242}00242\ \ \ x\ =\ -\/sensor\_data.gyr.y\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}{INT16\_to\_DPS}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00243}00243\ \ \ y\ =\ -\/sensor\_data.gyr.x\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}{INT16\_to\_DPS}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00244}00244\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00245}00245\ \ \ x\ =\ sensor\_data.gyr.x\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}{INT16\_to\_DPS}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00246}00246\ \ \ y\ =\ sensor\_data.gyr.y\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}{INT16\_to\_DPS}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00247}00247\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00248}00248\ \ \ z\ =\ sensor\_data.gyr.z\ /\ \doxymbox{\hyperlink{_bm_imu_8cpp_a805d4699afe7cb70e4bd5f053720b671}{INT16\_to\_DPS}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00249}00249\ \ \ \textcolor{keywordflow}{return}\ (ret\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00250}00250\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00256}\doxymbox{\hyperlink{class_bm_imu_a934b3a986d69fbf505b9cc9d8cab81ee}{00256}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a934b3a986d69fbf505b9cc9d8cab81ee}{BmImu::gyroscopeAvailable}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00257}00257\ \ \ uint16\_t\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00258}00258\ \ \ bmi2\_get\_int\_status(\&status,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00259}00259\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ ((status\ |\ \_int\_status)\ \&\ BMI2\_GYR\_DRDY\_INT\_MASK);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00260}00260\ \ \ \_int\_status\ =\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00261}00261\ \ \ \_int\_status\ \&=\ \string~BMI2\_GYR\_DRDY\_INT\_MASK;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00262}00262\ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00263}00263\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00269}\doxymbox{\hyperlink{class_bm_imu_a2f756cbb0a2f6709f75097fc24f88c71}{00269}}\ uint8\_t\ \doxymbox{\hyperlink{class_bm_imu_a2f756cbb0a2f6709f75097fc24f88c71}{BmImu::gyroscopeAvailableStatusbit}}()}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00270}00270\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00271}00271\ \ \ uint8\_t\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00272}00272\ \ \ bmi2\_get\_status(\&status,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00273}00273\ \ \ uint8\_t\ ret\ =\ ((status\ |\ \_status)\ \&\ BMI2\_DRDY\_GYR);\ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00274}00274\ \ \ \_status\ =\ status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00275}00275\ \ \ \_status\ \&=\ \string~BMI2\_DRDY\_GYR;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00276}00276\ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00277}00277\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00283}\doxymbox{\hyperlink{class_bm_imu_a875caabe00619717f32feecc8f40e5da}{00283}}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_a875caabe00619717f32feecc8f40e5da}{BmImu::gyroscopeSampleRate}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00284}00284\ \ \ \textcolor{keyword}{struct\ }bmi2\_sens\_config\ sens\_cfg;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00285}00285\ \ \ sens\_cfg.type\ =\ BMI2\_GYRO;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00286}00286\ \ \ bmi2\_get\_sensor\_config(\&sens\_cfg,\ 1,\ \&bmi2);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00287}00287\ \ \ \textcolor{keywordflow}{return}\ (1\ <<\ sens\_cfg.cfg.gyr.odr)\ *\ 0.39;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00288}00288\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00298}\doxymbox{\hyperlink{class_bm_imu_aa57cc19978464aa582ace2dbc59831c4}{00298}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_aa57cc19978464aa582ace2dbc59831c4}{BmImu::readMagneticField}}(\textcolor{keywordtype}{float}\&\ x,\ \textcolor{keywordtype}{float}\&\ y,\ \textcolor{keywordtype}{float}\&\ z)\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00299}00299\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00300}00300\ \ \ \textcolor{keyword}{struct\ }bmm150\_mag\_data\ mag\_data;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00301}00301\ \ \ \textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\ rc\ =\ bmm150\_read\_mag\_data(\&mag\_data,\ \&bmm1);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00302}00302\ \ \ x\ =\ mag\_data.x;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00303}00303\ \ \ y\ =\ mag\_data.y;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00304}00304\ \ \ z\ =\ mag\_data.z;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00306}00306\ \ \ \textcolor{keywordflow}{if}\ (rc\ ==\ BMM150\_OK)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00307}00307\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00308}00308\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00309}00309\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00310}00310\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00319}\doxymbox{\hyperlink{class_bm_imu_a99452621caae7e77115e9246dbd9c65b}{00319}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_bm_imu_a99452621caae7e77115e9246dbd9c65b}{BmImu::magneticFieldAvailableStatusbit}}()}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00320}00320\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00321}00321\ \ \ int8\_t\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00322}00322\ \ \ uint8\_t\ data\_ready\_status;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00323}00323\ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00324}00324\ \ \ rslt\ =\ bmm150\_get\_regs(BMM150\_REG\_DATA\_READY\_STATUS,\ \&data\_ready\_status,\ 1,\ \&bmm1);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00325}00325\ \ \ \textcolor{keywordflow}{if}\ (rslt\ ==\ BMM150\_OK)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00326}00326\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00327}00327\ \ \ \ \ data\_ready\_status\ =\ BMM150\_GET\_BITS\_POS\_0(data\_ready\_status,\ BMM150\_DRDY\_STATUS);\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00328}00328\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00329}00329\ \ \ \textcolor{keywordflow}{return}\ (data\_ready\_status\ !=\ 0);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00330}00330\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00336}\doxymbox{\hyperlink{class_bm_imu_a824c89afdad8e87a5150175647d57a96}{00336}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_bm_imu_a824c89afdad8e87a5150175647d57a96}{BmImu::magneticFieldAvailable}}()\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00337}00337\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00338}00338\ \ \ bmm150\_get\_interrupt\_status(\&bmm1);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00339}00339\ \ \ \textcolor{keywordflow}{return}\ bmm1.int\_status\ \&\ BMM150\_INT\_ASSERTED\_DRDY;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00340}00340\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00347}\doxymbox{\hyperlink{class_bm_imu_a83ec76fad0734b0d41795cc377d8dd50}{00347}}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_bm_imu_a83ec76fad0734b0d41795cc377d8dd50}{BmImu::magneticFieldSampleRate}}()\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00348}00348\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00349}00349\ \ \ \textcolor{keyword}{struct\ }bmm150\_settings\ settings;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00350}00350\ \ \ bmm150\_get\_sensor\_settings(\&settings,\ \&bmm1);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00351}00351\ \ \ \textcolor{keywordflow}{switch}\ (settings.data\_rate)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00352}00352\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_10HZ:\ \textcolor{keywordflow}{return}\ 10.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00353}00353\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_02HZ:\ \textcolor{keywordflow}{return}\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00354}00354\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_06HZ:\ \textcolor{keywordflow}{return}\ 6.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00355}00355\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_08HZ:\ \textcolor{keywordflow}{return}\ 8.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00356}00356\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_15HZ:\ \textcolor{keywordflow}{return}\ 15.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00357}00357\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_20HZ:\ \textcolor{keywordflow}{return}\ 20.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00358}00358\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_25HZ:\ \textcolor{keywordflow}{return}\ 25.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00359}00359\ \ \ \ \ \textcolor{keywordflow}{case}\ BMM150\_DATA\_RATE\_30HZ:\ \textcolor{keywordflow}{return}\ 30.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00360}00360\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00361}00361\ \ \ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00362}00362\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00373}\doxymbox{\hyperlink{class_bm_imu_aa7d2b9e8363e18392d405ad76f7f166d}{00373}}\ int8\_t\ \doxymbox{\hyperlink{class_bm_imu_adde849eaffa4d095d7a036cfae72a14d}{BmImu::configure\_sensor}}(\textcolor{keyword}{struct}\ bmi2\_dev\ *dev)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00374}00374\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00375}00375\ \ \ int8\_t\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00376}00376\ \ \ uint8\_t\ sens\_list[2]\ =\ \{\ BMI2\_ACCEL,\ BMI2\_GYRO\ \};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00378}00378\ \ \ \textcolor{keyword}{struct\ }bmi2\_int\_pin\_config\ int\_pin\_cfg;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00379}00379\ \ \ int\_pin\_cfg.pin\_type\ =\ BMI2\_INT1;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00380}00380\ \ \ int\_pin\_cfg.int\_latch\ =\ BMI2\_INT\_NON\_LATCH;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00381}00381\ \ \ int\_pin\_cfg.pin\_cfg[0].lvl\ =\ BMI2\_INT\_ACTIVE\_HIGH;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00382}00382\ \ \ int\_pin\_cfg.pin\_cfg[0].od\ =\ BMI2\_INT\_PUSH\_PULL;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00383}00383\ \ \ int\_pin\_cfg.pin\_cfg[0].output\_en\ =\ BMI2\_INT\_OUTPUT\_ENABLE;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00384}00384\ \ \ int\_pin\_cfg.pin\_cfg[0].input\_en\ =\ BMI2\_INT\_INPUT\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00385}00385\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00386}00386\ \ \ \textcolor{keyword}{struct\ }bmi2\_sens\_config\ sens\_cfg[2];}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00387}00387\ \ \ sens\_cfg[0].type\ =\ BMI2\_ACCEL;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00388}00388\ \ \ sens\_cfg[0].cfg.acc.bwp\ =\ BMI2\_ACC\_OSR2\_AVG2;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00389}00389\ \ \ sens\_cfg[0].cfg.acc.odr\ =\ BMI2\_ACC\_ODR\_50HZ;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00390}00390\ \ \ sens\_cfg[0].cfg.acc.filter\_perf\ =\ BMI2\_PERF\_OPT\_MODE;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00391}00391\ \ \ sens\_cfg[0].cfg.acc.range\ =\ BMI2\_ACC\_RANGE\_4G;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00392}00392\ \ \ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00393}00393\ \ \ sens\_cfg[1].type\ =\ BMI2\_GYRO;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00394}00394\ \ \ sens\_cfg[1].cfg.gyr.filter\_perf\ =\ BMI2\_PERF\_OPT\_MODE;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00395}00395\ \ \ sens\_cfg[1].cfg.gyr.bwp\ =\ BMI2\_GYR\_OSR2\_MODE;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00396}00396\ \ \ sens\_cfg[1].cfg.gyr.odr\ =\ BMI2\_GYR\_ODR\_50HZ;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00397}00397\ \ \ sens\_cfg[1].cfg.gyr.range\ =\ BMI2\_GYR\_RANGE\_2000;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00398}00398\ \ \ sens\_cfg[1].cfg.gyr.ois\_range\ =\ BMI2\_GYR\_OIS\_2000;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00399}00399\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00400}00400\ \ \ rslt\ =\ bmi2\_set\_int\_pin\_config(\&int\_pin\_cfg,\ dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00401}00401\ \ \ \textcolor{keywordflow}{if}\ (rslt\ !=\ BMI2\_OK)\ \textcolor{keywordflow}{return}\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00402}00402\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00403}00403\ \ \ rslt\ =\ bmi2\_set\_sensor\_config(sens\_cfg,\ 2,\ dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00404}00404\ \ \ \textcolor{keywordflow}{if}\ (rslt\ !=\ BMI2\_OK)\ \textcolor{keywordflow}{return}\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00405}00405\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00406}00406\ \ \ \textcolor{comment}{/*\ Deaktivierung\ des\ Advanced\ Power\ Save\ Modes\ für\ deterministisches\ Timing\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00407}00407\ \ \ rslt\ =\ bmi2\_set\_adv\_power\_save(BMI2\_DISABLE,\ dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00408}00408\ \ \ \textcolor{keywordflow}{if}\ (rslt\ !=\ BMI2\_OK)\ \textcolor{keywordflow}{return}\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00410}00410\ \ \ rslt\ =\ bmi2\_sensor\_enable(sens\_list,\ 2,\ dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00411}00411\ \ \ \textcolor{keywordflow}{return}\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00412}00412\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00413}00413\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00422}\doxymbox{\hyperlink{class_bm_imu_adde849eaffa4d095d7a036cfae72a14d}{00422}}\ int8\_t\ \doxymbox{\hyperlink{class_bm_imu_adde849eaffa4d095d7a036cfae72a14d}{BmImu::configure\_sensor}}(\textcolor{keyword}{struct}\ bmm150\_dev\ *dev)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00423}00423\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00424}00424\ \ \ \ \ int8\_t\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00425}00425\ \ \ \ \ \textcolor{keyword}{struct\ }bmm150\_settings\ settings;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00426}00426\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00427}00427\ \ \ \ \ settings.pwr\_mode\ =\ BMM150\_POWERMODE\_NORMAL;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00428}00428\ \ \ \ \ rslt\ =\ bmm150\_set\_op\_mode(\&settings,\ dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00430}00430\ \ \ \ \ \textcolor{keywordflow}{if}\ (rslt\ ==\ BMM150\_OK)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00431}00431\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00432}00432\ \ \ \ \ \ \ \ \ settings.preset\_mode\ =\ BMM150\_PRESETMODE\_ENHANCED;\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00433}00433\ \ \ \ \ \ \ \ \ rslt\ =\ bmm150\_set\_presetmode(\&settings,\ dev);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00434}00434\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00435}00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rslt\ ==\ BMM150\_OK)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00436}00436\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Data-\/Ready\ Interrupt\ auf\ Hardware-\/Pin\ mappen\ */}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ settings.int\_settings.drdy\_pin\_en\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ settings.int\_settings.int\_pin\_en\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ rslt\ =\ bmm150\_set\_sensor\_settings(BMM150\_SEL\_DRDY\_PIN\_EN,\ \&settings,\ dev);\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00441}00441\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00442}00442\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00443}00443\ \ \ \ \ \textcolor{keywordflow}{return}\ rslt;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00444}00444\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00445}00445\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00456}00456\ int8\_t\ BmImu::bmi2\_i2c\_read(uint8\_t\ reg\_addr,\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00457}00457\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00458}00458\ \ \ \textcolor{keywordflow}{if}\ ((reg\_data\ ==\ NULL)\ ||\ (len\ ==\ 0)\ ||\ (len\ >\ 32))\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00459}00459\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00460}00460\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00461}00461\ \ \ uint8\_t\ bytes\_received;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00463}00463\ \ \ \textcolor{keyword}{struct\ }dev\_info*\ dev\_info\ =\ (\textcolor{keyword}{struct\ }dev\_info*)intf\_ptr;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00464}00464\ \ \ uint8\_t\ dev\_id\ =\ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a1997a5306d6d04a9ce867303d1a6d9e1}{dev\_addr}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00465}00465\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00466}00466\ \ \ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>beginTransmission(dev\_id);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00467}00467\ \ \ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>write(reg\_addr);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00468}00468\ \ \ \textcolor{keywordflow}{if}\ (dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>endTransmission()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00469}00469\ \ \ \ \ bytes\_received\ =\ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>requestFrom(dev\_id,\ len);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00470}00470\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ i\ <\ bytes\_received;\ i++)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00471}00471\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00472}00472\ \ \ \ \ \ \ reg\_data[i]\ =\ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>read();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00473}00473\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00474}00474\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00475}00475\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00476}00476\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00477}00477\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00478}00478\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00479}00479\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00489}00489\ int8\_t\ BmImu::bmi2\_i2c\_write(uint8\_t\ reg\_addr,\ \textcolor{keyword}{const}\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00490}00490\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00491}00491\ \ \ \textcolor{keywordflow}{if}\ ((reg\_data\ ==\ NULL)\ ||\ (len\ ==\ 0)\ ||\ (len\ >\ 32))\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00492}00492\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00493}00493\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00494}00494\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00495}00495\ \ \ \textcolor{keyword}{struct\ }dev\_info*\ dev\_info\ =\ (\textcolor{keyword}{struct\ }dev\_info*)intf\_ptr;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00496}00496\ \ \ uint8\_t\ dev\_id\ =\ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a1997a5306d6d04a9ce867303d1a6d9e1}{dev\_addr}};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00497}00497\ \ \ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>beginTransmission(dev\_id);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00498}00498\ \ \ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>write(reg\_addr);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00499}00499\ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ i\ <\ len;\ i++)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00500}00500\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00501}00501\ \ \ \ \ dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>write(reg\_data[i]);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00502}00502\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00503}00503\ \ \ \textcolor{keywordflow}{if}\ (dev\_info-\/>\doxymbox{\hyperlink{structdev__info_a69aa9740c78dc84d7cfb7d3ff7e779be}{\_wire}}-\/>endTransmission()\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00504}00504\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00505}00505\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00506}00506\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00507}00507\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00508}00508\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00514}00514\ \textcolor{keywordtype}{void}\ BmImu::bmi2\_delay\_us(uint32\_t\ period,\ \textcolor{keywordtype}{void}\ *intf\_ptr)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00515}00515\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00516}00516\ \ \ delayMicroseconds(period);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00517}00517\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00518}00518\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00519}00519\ \textcolor{preprocessor}{\#ifdef\ \_\_MBED\_\_}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00525}00525\ \textcolor{keywordtype}{void}\ BmImu::interrupt\_handler()}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00526}00526\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00527}00527\ \ \ \textcolor{keywordflow}{if}\ (\_initialized\ \&\&\ \_cb)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00528}00528\ \ \ \ \ queue.call(\_cb);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00529}00529\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00530}00530\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00531}00531\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00538}00538\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ panic\_led\_trap(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00539}00539\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00540}00540\ \textcolor{preprocessor}{\#if\ !defined(LED\_BUILTIN)}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00541}00541\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\ LED\_BUILTIN\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00542}00542\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00543}00543\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00544}00544\ \ \ pinMode(LED\_BUILTIN,\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00545}00545\ \ \ \textcolor{keywordflow}{while}\ (1)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00546}00546\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00547}00547\ \ \ \ \ digitalWrite(LED\_BUILTIN,\ LOW);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00548}00548\ \ \ \ \ delay(100);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00549}00549\ \ \ \ \ digitalWrite(LED\_BUILTIN,\ HIGH);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00550}00550\ \ \ \ \ delay(100);}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00551}00551\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00552}00552\ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00553}00553\ }
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00561}00561\ \textcolor{keywordtype}{void}\ BmImu::print\_rslt(int8\_t\ rslt)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00562}00562\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00563}00563\ \ \ \textcolor{keywordflow}{if}\ (!\_debug)\ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00564}00564\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00565}00565\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00566}00566\ \ \ \textcolor{keywordflow}{switch}\ (rslt)}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00567}00567\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00568}00568\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_OK:\ \textcolor{keywordflow}{return};\ \textcolor{comment}{/*\ Operation\ erfolgreich:\ Frühzeitiger\ Rücksprung\ */}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00569}00569\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_NULL\_PTR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00570}00570\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Null\ pointer"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00571}00571\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00572}00572\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00573}00573\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_COM\_FAIL:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00574}00574\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Communication\ failure"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00575}00575\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00576}00576\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00577}00577\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_DEV\_NOT\_FOUND:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00578}00578\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Device\ not\ found"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00579}00579\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00580}00580\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00581}00581\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_OUT\_OF\_RANGE:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00582}00582\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Out\ of\ range"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00583}00583\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00584}00584\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00585}00585\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_ACC\_INVALID\_CFG:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00586}00586\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ accel\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00587}00587\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00588}00588\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00589}00589\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_GYRO\_INVALID\_CFG:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00590}00590\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ gyro\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00591}00591\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00592}00592\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00593}00593\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_ACC\_GYR\_INVALID\_CFG:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00594}00594\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ accel/gyro\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00595}00595\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00596}00596\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00597}00597\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_INVALID\_SENSOR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00598}00598\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ sensor"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00599}00599\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00600}00600\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00601}00601\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_CONFIG\_LOAD:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00602}00602\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Configuration\ loading\ error"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00603}00603\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00604}00604\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00605}00605\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_INVALID\_PAGE:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00606}00606\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ page\ "{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00607}00607\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00608}00608\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00609}00609\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_INVALID\_FEAT\_BIT:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00610}00610\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ feature\ bit"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00611}00611\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00612}00612\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00613}00613\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_INVALID\_INT\_PIN:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00614}00614\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ interrupt\ pin"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00615}00615\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00616}00616\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00617}00617\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_SET\_APS\_FAIL:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00618}00618\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Setting\ advanced\ power\ mode\ failed"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00619}00619\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00620}00620\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00621}00621\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_AUX\_INVALID\_CFG:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00622}00622\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ auxiliary\ configuration"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00623}00623\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00624}00624\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00625}00625\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_AUX\_BUSY:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00626}00626\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Auxiliary\ busy"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00627}00627\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00628}00628\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00629}00629\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_SELF\_TEST\_FAIL:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00630}00630\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Self\ test\ failed"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00631}00631\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00632}00632\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00633}00633\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_REMAP\_ERROR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00634}00634\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Remapping\ error"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00635}00635\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00636}00636\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00637}00637\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_GYRO\_USER\_GAIN\_UPD\_FAIL:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00638}00638\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Gyro\ user\ gain\ update\ failed"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00639}00639\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00640}00640\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00641}00641\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_SELF\_TEST\_NOT\_DONE:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00642}00642\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Self\ test\ not\ done"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00643}00643\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00644}00644\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00645}00645\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_INVALID\_INPUT:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00646}00646\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ input"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00647}00647\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00648}00648\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00649}00649\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_INVALID\_STATUS:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00650}00650\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ status"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00651}00651\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00652}00652\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00653}00653\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_CRT\_ERROR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00654}00654\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ CRT\ error"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00655}00655\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00656}00656\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00657}00657\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_ST\_ALREADY\_RUNNING:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00658}00658\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Self\ test\ already\ running"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00659}00659\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00660}00660\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00661}00661\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_CRT\_READY\_FOR\_DL\_FAIL\_ABORT:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00662}00662\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ CRT\ ready\ for\ DL\ fail\ abort"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00663}00663\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00664}00664\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00665}00665\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_DL\_ERROR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00666}00666\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ DL\ error"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00667}00667\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00668}00668\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00669}00669\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_PRECON\_ERROR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00670}00670\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ PRECON\ error"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00671}00671\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00672}00672\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00673}00673\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_ABORT\_ERROR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00674}00674\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Abort\ error"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00675}00675\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00676}00676\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00677}00677\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_GYRO\_SELF\_TEST\_ERROR:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00678}00678\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Gyro\ self\ test\ error"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00679}00679\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00680}00680\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00681}00681\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_GYRO\_SELF\_TEST\_TIMEOUT:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00682}00682\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Gyro\ self\ test\ timeout"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00683}00683\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00684}00684\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00685}00685\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_WRITE\_CYCLE\_ONGOING:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00686}00686\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Write\ cycle\ ongoing"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00687}00687\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00688}00688\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00689}00689\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_WRITE\_CYCLE\_TIMEOUT:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00690}00690\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Write\ cycle\ timeout"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00691}00691\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00692}00692\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00693}00693\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_ST\_NOT\_RUNING:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00694}00694\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Self\ test\ not\ running"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00695}00695\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00696}00696\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00697}00697\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_DATA\_RDY\_INT\_FAILED:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00698}00698\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Data\ ready\ interrupt\ failed"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00699}00699\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00700}00700\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00701}00701\ \ \ \ \ \textcolor{keywordflow}{case}\ BMI2\_E\_INVALID\_FOC\_POSITION:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00702}00702\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Invalid\ FOC\ position"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00703}00703\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00704}00704\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00705}00705\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00706}00706\ \ \ \ \ \ \ \_debug-\/>println(\textcolor{stringliteral}{"{}Error\ ["{}}\ +\ String(rslt)\ +\ \textcolor{stringliteral}{"{}]\ :\ Unknown\ error\ code"{}});}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00707}00707\ \ \ \ \ \ \ panic\_led\_trap();}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00708}00708\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00709}00709\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_bm_imu_8cpp_source_l00710}00710\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,4 @@
+# Doxygen-Dokumentation von der GitHub-Sprachstatistik ausschließen
+Dokumentation/**/* linguist-vendored
+latex/**/* linguist-vendored
+html/**/* linguist-vendored
